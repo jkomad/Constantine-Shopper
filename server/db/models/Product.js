@@ -5,6 +5,7 @@ const Product = db.define('product', {
     name: {
         type: Sequelize.TEXT,
         allowNull: false,
+        unique: true
     },
     price: {
         type: Sequelize.NUMBER,
@@ -17,6 +18,7 @@ const Product = db.define('product', {
     imgUrl: {
         type: Sequelize.TEXT,
         allowNull: false
+        unique: true
     }
 })
 
