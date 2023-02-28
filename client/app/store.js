@@ -1,6 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authReducer from '../features/auth/authSlice';
+import productsReducer from '../features/products/productsSlice';
+import singleProductReducer from '../features/singleProduct/singleProductSlice';
+import usersReducer from '../features/users/usersSlice';
+
 
 const store = configureStore({
   reducer: {
