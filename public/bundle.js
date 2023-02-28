@@ -6605,7 +6605,7 @@ var Products = function Products() {
     dispatch(_productsSlice__WEBPACK_IMPORTED_MODULE_2__.fetchAllProducts);
   }, [dispatch]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "All Products:"), products.map(function (product) {
-    /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "productContainer"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
       src: product.imgUrl
@@ -6900,7 +6900,7 @@ var Users = function Users() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_usersSlice__WEBPACK_IMPORTED_MODULE_2__.fetchUsers)());
-  });
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "users-container"
   }, users.map(function (user) {

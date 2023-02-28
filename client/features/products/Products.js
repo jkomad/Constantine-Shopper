@@ -13,14 +13,14 @@ const Products = () => {
   return (
     <div>
       <h1>All Products:</h1>
-      {products.map((product) => {
+      {products.map((product) => (
         <div className="productContainer">
           <img src={product.imgUrl}></img>
           <h3>{product.name}</h3>
           <h4>{product.price}</h4>
           <h4>{product.description}</h4>
         </div>
-      })}
+      ))}
     </div>
   )
 }

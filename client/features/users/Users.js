@@ -8,7 +8,7 @@ const Users = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchUsers())
-    })
+    }, [])
 
     return (
         <div id='users-container'>
