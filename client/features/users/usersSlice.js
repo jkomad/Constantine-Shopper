@@ -4,7 +4,7 @@ import axios from "axios";
 let initialState = []
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async() => {
-    const data = await axios.get('/api/users')
+    const { data } = await axios.get('/api/users')
     return data
 })
 
