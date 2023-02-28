@@ -14,8 +14,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <h1>FS-App-Template</h1>
-      <nav>
+      <h1>Snackbar</h1>
+      <nav className='Navbar'>
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
