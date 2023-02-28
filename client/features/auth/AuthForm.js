@@ -22,7 +22,7 @@ const AuthForm = ({ name, displayName }) => {
 
   return (
     <div>
-  {displayName === "submit" ? (
+  {displayName === "signup" ? (
     <form className="Login" onSubmit={handleSubmit} name={name}>
       <div>
         <label htmlFor="username">
