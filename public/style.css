@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  padding-top: 100px;
 }
 
 a {
@@ -27,7 +28,7 @@ form div {
   display: flex;
   left: 0px;
   top: 0px;
-  background-color: darkgray; 
+  background-color: darkgray;
   justify-content: space-between;
 }
 .Navbar div{

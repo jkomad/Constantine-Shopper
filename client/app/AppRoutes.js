@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/auth/AuthForm';
-import SignUp from '../features/auth/SignUp';
-import Home from '../features/home/Home';
-import { me } from './store';
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import AuthForm from "../features/auth/AuthForm";
+import SignUp from "../features/auth/SignUp";
+import Home from "../features/home/Home";
+import Products from "../features/products/Products";
+import SingleProduct from "../features/singleProduct/SingleProduct";
+import { fetchAllProducts } from "../features/products/productsSlice";
+import Users from "../features/users/Users";
+import User from "../features/user/User";
+import { me } from "./store";
+import { fetchUsers } from "../features/users/usersSlice";
 /**
  * COMPONENT
  */
@@ -16,7 +21,9 @@ const AppRoutes = () => {
 
   useEffect(() => {
     dispatch(me());
-  }, []);
+    dispatch(fetchAllProducts());
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   return (
     <div>
@@ -39,6 +46,10 @@ const AppRoutes = () => {
             path="/signup"
             element={<SignUp name="signup" displayName="Sign Up" />}
           />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/users/:id" element={<User />} />
         </Routes>
       )}
     </div>
