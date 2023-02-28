@@ -14,21 +14,26 @@ const Navbar = () => {
 
   return (
     <div>
-      <h1>Snackbar</h1>
-      <nav className='Navbar'>
+      <nav>
         {isLoggedIn ? (
-          <div>
+          <div className='Navbar'>
+            <h1>Snackbar</h1>
             {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
+            <div>
+              <Link to="/home">Home</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
+            </div>
           </div>
         ) : (
-          <div>
+          <div className='Navbar'>
+            <h1>Snackbar</h1>
             {/* The navbar will show these links before you log in */}
+            <div>
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
+            </div>
           </div>
         )}
       </nav>
