@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Users from '../users/Users';
 
 /**
  * COMPONENT
@@ -13,7 +12,6 @@ const Home = (props) => {
     <div>
       <h3>Welcome, {username}</h3>
     </div>
-    <Users />
     </>
   );
 };

@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authReducer from '../features/auth/authSlice';
-import usersReducer from '../features/users/usersSlice'
 
 const store = configureStore({
   reducer: {
