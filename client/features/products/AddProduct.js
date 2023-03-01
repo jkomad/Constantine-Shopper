@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "./productsSlice";
 
-const AddProduct = ({ AddProduct }) => {
+const AddProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [gpa, setGpa] = useState("");
+
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    addStudent(name, price, description, imgUrl);
+    dispatch(addProduct({name, price, description, imgUrl}));
 
     setName("");
     setPrice("");
@@ -23,15 +26,15 @@ const AddProduct = ({ AddProduct }) => {
         <h3 className="addNew">Add New Product</h3>
       <input
         type="text"
-        id="name"
         value={name}
         placeholder="Product Name"
-        onChange={(e) => setName(e.target.value)}
+        onChange={
+          (e) => setName(e.target.value)
+        }
       />
       {/* <label htmlFor="name">Last Name:</label> */}
       <input
         type="text"
-        id="price"
         value={price}
         placeholder="Price"
         onChange={(e) => setPrice(e.target.value)}
@@ -39,7 +42,6 @@ const AddProduct = ({ AddProduct }) => {
       {/* <label>description</label> */}
       <input
         type="text"
-        id="description"
         value={description}
         placeholder="description"
         onChange={(e) => setDescription(e.target.value)}
@@ -47,12 +49,11 @@ const AddProduct = ({ AddProduct }) => {
       {/* <label>imgUrl</label> */}
       <input
         type="text"
-        id="imgUrl"
         value={imgUrl}
         placeholder="Image URL"
         onChange={(e) => setImgUrl(e.target.value)}
       />
-      <button className="deleteButton" type="submit">SUBMIT</button>
+      <button className="addButton" type="submit">SUBMIT</button>
     </form>
   );
 };
