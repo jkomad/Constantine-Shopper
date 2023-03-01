@@ -14,10 +14,10 @@ const Products = () => {
 
   return (
     <div>
-      <Routes>
+      {/* <Routes>
         <Link to="/addProduct"/>
         <Route path="/addProduct" element={AddProduct} />
-      </Routes>
+      </Routes> */}
       <h1>All Products:</h1>
       {products.map((product) => (
         <div className="productContainer">
