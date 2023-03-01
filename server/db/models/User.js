@@ -40,6 +40,10 @@ const User = db.define("user", {
       notEmpty: true,
     },
   },
+  imgUrl: {
+    type: Sequelize.TEXT,
+    defaultValue: '/assets/images/default_user_img.svg'
+  }
 });
 
 module.exports = User;
