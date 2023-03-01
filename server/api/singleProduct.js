@@ -18,3 +18,21 @@ router.get("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+// PUT /api/products/:id
+router.put("/:id", async (req, res, next) => {
+  try {
+    const productToBeUpdated = await Product.findByPk(req.params.id);
+
+    if (!productToBeUpdated) {
+      const error = new Error("That product does not exist");
+      error.status = 404;
+      throw error;
+    }
+
+    const updatedProduct = await productToBeUpdated.update(req.body);
+    res.send(updatedProduct);
+  } catch (error) {
+    next(error);
+  }
+});
