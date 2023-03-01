@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { selectSingleProduct, fetchSingleProduct } from "./singleProductSlice";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  selectSingleProduct,
+  fetchSingleProduct,
+  deleteProductAsync,
+} from "./singleProductSlice";
 import EditProductForm from "./EditProductForm";
+import { fetchAllProducts } from "../products/productsSlice";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
   const product = useSelector(selectSingleProduct);
 
   const [showEditForm, setShowEditForm] = useState(false);
@@ -17,11 +23,17 @@ const SingleProduct = () => {
 
   const handleEditSubmit = () => {
     setShowEditForm(false);
-  }
+  };
 
   const handleEditClick = () => {
     setShowEditForm(true);
-  }
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteProductAsync(id))
+      .then(navigate("/products"))
+      .then(dispatch(fetchAllProducts()));
+  };
 
   return (
     <div>
@@ -29,14 +41,12 @@ const SingleProduct = () => {
       <h1>{product.name}</h1>
       <h2>{product.price}</h2>
       <h3>{product.description}</h3>
-      {!showEditForm && (
-        <button onClick={handleEditClick}>
-          Edit Product
-        </button>
-      )}
+      {!showEditForm && <button onClick={handleEditClick}>Edit Product</button>}
       {showEditForm && (
         <EditProductForm product={product} onSubmit={handleEditSubmit} />
       )}
+      <button>Add to cart</button>
+      <button onClick={() => handleDelete()}>Delete</button>
     </div>
   );
 };
