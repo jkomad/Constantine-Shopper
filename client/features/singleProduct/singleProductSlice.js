@@ -28,6 +28,14 @@ export const editProductAsync = createAsyncThunk(
   }
 );
 
+export const deleteProductAsync = createAsyncThunk(
+  "products/:id/delete",
+  async (id) => {
+    const { data } = await axios.delete(`/api/products/${id}`);
+    return data;
+  }
+);
+
 export const singleProductSlice = createSlice({
   name: "singleProduct",
   initialState,
@@ -41,6 +49,12 @@ export const singleProductSlice = createSlice({
       state.price = action.payload.price;
       state.description = action.payload.description;
       state.imgUrl = action.payload.imgUrl;
+    });
+    builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
+      const newState = state.filter(
+        (product) => product.id !== action.payload.id
+      );
+      return newState;
     });
   },
 });

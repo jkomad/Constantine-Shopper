@@ -32,6 +32,27 @@ router.put("/:id", async (req, res, next) => {
 
     const updatedProduct = await productToBeUpdated.update(req.body);
     res.send(updatedProduct);
+    
+  } catch (error) {
+    next(error);
+  }
+});
+
+// DELETE /api/products/:id
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    const productToBeDeleted = await Product.findByPk(id);
+
+    if (!productToBeDeleted) {
+      const error = new Error("That product does not exist");
+      error.status = 404;
+      throw error;
+    }
+
+    await productToBeDeleted.destroy();
+    res.send(productToBeDeleted);
+
   } catch (error) {
     next(error);
   }
