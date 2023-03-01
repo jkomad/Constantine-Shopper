@@ -4,11 +4,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchUsers, selectUsers } from './usersSlice'
 import { deleteUser } from './usersSlice'
+import Pagination from '../pagination/Pagination'
 //import uuid for our keys???
 
 const Users = () => {
     const users = useSelector(selectUsers)
     const [deleteStatus, setDeleteStatus] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [usersPerPage, setUsersPerPage] = useState(9)
 
     const dispatch = useDispatch()
 
@@ -17,11 +20,16 @@ const Users = () => {
         setDeleteStatus(false)
     }, [deleteStatus])
 
+    const indexOfLastUser = currentPage * usersPerPage
+    const indexOfFirstUser = indexOfLastUser - usersPerPage
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser)
+
+
     return (
         <>
         <h1 id='users-header'>All Users</h1>
         <div id='users'>
-            {users.map((user) => {
+            {currentUsers.map((user) => {
                 return (
                     <div key={user.id} className='user-container'>
                         <Link to={`/users/${user.id}`} className='user'>
@@ -38,6 +46,7 @@ const Users = () => {
                 )
             })}
         </div>
+        <Pagination itemsPerPage={usersPerPage} totalItems={users.length} setCurrentPage={setCurrentPage}/>
         </>
     )
 }
