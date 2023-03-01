@@ -17,6 +17,7 @@ import { fetchUsers } from "../features/users/usersSlice";
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const userId = useSelector((state) => state.auth.me.id); // get current user's id
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +32,10 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+          <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/users/:id" element={<User userId={userId}/>} /> // update route for logged in users
         </Routes>
       ) : (
         <Routes>
@@ -49,7 +54,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/users/:id" element={<User />} />
+          <Route path="/users/:id" element={<User userId={userId} />} /> // pass userId prop to User component
         </Routes>
       )}
     </div>
