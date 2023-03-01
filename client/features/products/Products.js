@@ -9,18 +9,15 @@ const Products = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchAllProducts)
-  }, [dispatch]);
+    dispatch(fetchAllProducts())
+  }, []);
 
   return (
     <div>
-      {/* <Routes>
-        <Link to="/addProduct"/>
-        <Route path="/addProduct" element={AddProduct} />
-      </Routes> */}
+        <Link to="/products/add">Add a Product</Link>
       <h1>All Products:</h1>
       {products.map((product) => (
-        <div className="productContainer">
+        <div key={product.id} className="productContainer">
           <img src={product.imgUrl}></img>
           <h3>{product.name}</h3>
           <h4>{product.price}</h4>
