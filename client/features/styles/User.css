@@ -1,0 +1,31 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.user {
+    height: 300px;
+    width: 360px;
+    text-align: center;
+    background-color: grey;
+    border-radius: 30px;
+    padding: 10px;
+    overflow: scroll
+}
+
+.user-pic {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.user::-webkit-scrollbar {
+    display: none
+}
+
+.return {
+    border: none;
+    border-radius: 10px;
+}
