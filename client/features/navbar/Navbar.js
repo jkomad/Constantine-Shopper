@@ -5,6 +5,7 @@ import { logout } from '../../app/store';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const userId = useSelector((state) => state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -17,10 +18,11 @@ const Navbar = () => {
       <nav>
         {isLoggedIn ? (
           <div className='Navbar'>
-            <h1>Snackbar</h1>
+            <Link to="/products"><h1>Snackbar</h1></Link>
             {/* The navbar will show these links after you log in */}
             <div>
               <Link to="/home">Home</Link>
+              <Link to={`users/${userId}`}>My Account</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
@@ -28,7 +30,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className='Navbar'>
-            <h1>Snackbar</h1>
+            <Link to="/products"><h1>Snackbar</h1></Link>
             {/* The navbar will show these links before you log in */}
             <div>
             <Link to="/login">Login</Link>
