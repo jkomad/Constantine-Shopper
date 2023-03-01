@@ -2,7 +2,7 @@ import '../styles/User.css'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
-import { selectUser, fetchSingleUser, clearUserState } from './userSlice'
+import { selectUser, fetchSingleUser, clearUserState, deleteUser } from './userSlice'
 
 const User = () => {
     const user = useSelector(selectUser)
@@ -21,6 +21,11 @@ const User = () => {
         navigate('/users')
     }
 
+    const handleDelete = () => {
+        dispatch(deleteUser(id))
+        navigate('/users')
+    }
+
     return (
         <>
         {!editStatus ? 
@@ -35,7 +40,7 @@ const User = () => {
                     <button className='edit-button' onClick={() => setEditStatus(true)}>Edit</button>
                 </div>
             </div>
-            <button className='delete-button'>X</button>
+            <button className='delete-button' onClick={handleDelete}>X</button>
         </div>
         :
         <>
@@ -47,7 +52,6 @@ const User = () => {
                 <h3>{user.address}</h3>
             </div>
         </div>
-        <EditUser />
         </>
         }
         </>

@@ -6825,6 +6825,10 @@ var User = function User() {
     dispatch((0,_userSlice__WEBPACK_IMPORTED_MODULE_3__.clearUserState)());
     navigate('/users');
   };
+  var handleDelete = function handleDelete() {
+    dispatch((0,_userSlice__WEBPACK_IMPORTED_MODULE_3__.deleteUser)(id));
+    navigate('/users');
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, !editStatus ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "user-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
@@ -6843,7 +6847,8 @@ var User = function User() {
       return setEditStatus(true);
     }
   }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
-    className: "delete-button"
+    className: "delete-button",
+    onClick: handleDelete
   }, "X")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "user-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
@@ -6851,7 +6856,7 @@ var User = function User() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("img", {
     className: "user-pic",
     src: user.imgUrl
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", null, user.address))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(EditUser, null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", null, user.address)))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (User);
 
@@ -6943,6 +6948,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _usersSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./usersSlice */ "./client/features/users/usersSlice.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6952,10 +6964,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var Users = function Users() {
   var users = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_usersSlice__WEBPACK_IMPORTED_MODULE_3__.selectUsers);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    deleteStatus = _useState2[0],
+    setDeleteStatus = _useState2[1];
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     dispatch((0,_usersSlice__WEBPACK_IMPORTED_MODULE_3__.fetchUsers)());
-  }, []);
+    setDeleteStatus(false);
+  }, [deleteStatus]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", {
     id: "users-header"
   }, "All Users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
@@ -6970,7 +6987,13 @@ var Users = function Users() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("img", {
       className: "user-pic",
       src: user.imgUrl
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", null, user.address)));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", null, user.address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
+      className: "delete-button",
+      onClick: function onClick() {
+        setDeleteStatus(true);
+        dispatch((0,_usersSlice__WEBPACK_IMPORTED_MODULE_3__.deleteUser)(user.id));
+      }
+    }, "X"));
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Users);
@@ -6987,6 +7010,7 @@ var Users = function Users() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "deleteUser": () => (/* binding */ deleteUser),
 /* harmony export */   "fetchUsers": () => (/* binding */ fetchUsers),
 /* harmony export */   "selectUsers": () => (/* binding */ selectUsers)
 /* harmony export */ });
@@ -7016,6 +7040,29 @@ var fetchUsers = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsyncThu
     }
   }, _callee);
 })));
+var deleteUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsyncThunk)('users/deleteUser', /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(id) {
+    var _yield$axios$delete, data;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/users/".concat(id));
+        case 2:
+          _yield$axios$delete = _context2.sent;
+          data = _yield$axios$delete.data;
+          console.log(data);
+          return _context2.abrupt("return", data);
+        case 6:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function (_x) {
+    return _ref2.apply(this, arguments);
+  };
+}());
 var usersSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   name: 'users',
   initialState: initialState,
@@ -7023,6 +7070,9 @@ var usersSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   extraReducers: function extraReducers(builder) {
     builder.addCase(fetchUsers.fulfilled, function (state, action) {
       return action.payload;
+    }), builder.addCase(deleteUser.fulfilled, function (state, action) {
+      state.splice(action.payload.id - 1);
+      return state;
     });
   }
 });
