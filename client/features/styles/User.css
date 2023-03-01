@@ -52,7 +52,7 @@ button {
     width: 50px;
     background-color: red;
     color: white;
-    border: solid black 2px;
+    border: none;
     border-radius: 10px;
 }
 

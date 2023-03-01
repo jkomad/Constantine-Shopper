@@ -6846,17 +6846,18 @@ var User = function User() {
     onClick: function onClick() {
       return setEditStatus(true);
     }
-  }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
-    className: "delete-button",
-    onClick: handleDelete
-  }, "X")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+  }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
+    className: "delete-button"
+  }, "X")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "user-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "single-user"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("img", {
     className: "user-pic",
     src: user.imgUrl
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", null, user.address)))));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", null, user.address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
+    className: "delete-button"
+  }, "X")))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (User);
 
@@ -7071,7 +7072,7 @@ var usersSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
     builder.addCase(fetchUsers.fulfilled, function (state, action) {
       return action.payload;
     }), builder.addCase(deleteUser.fulfilled, function (state, action) {
-      state.splice(action.payload.id - 1);
+      state.splice(action.payload.id - 1, 1);
       return state;
     });
   }
@@ -7103,7 +7104,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".user-container {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 10px;\n}\n\n.single-user {\n    height: 310px;\n    width: 360px;\n    text-align: center;\n    background-color: grey;\n    border-radius: 30px;\n    padding: 10px;\n    overflow: scroll\n}\n\n.user-pic {\n    height: 100px;\n    width: 100px;\n    margin-top: 10px;\n}\n\n.user::-webkit-scrollbar {\n    display: none\n}\n\nbutton {\n    border: none;\n    border-radius: 10px;\n    margin: 5px;\n}\n\n.back-button:hover {\n    background-color: grey;\n    color: white;\n    transition: 0.3s\n}\n\n.edit-button {\n    background-color: red;\n    color: white;\n    width: 50px;\n}\n\n.edit-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}\n\n.delete-button {\n    width: 50px;\n    background-color: red;\n    color: white;\n    border: solid black 2px;\n    border-radius: 10px;\n}\n\n.delete-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}", "",{"version":3,"sources":["webpack://./client/features/styles/User.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,YAAY;AAChB;;AAEA;IACI,aAAa;IACb,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,mBAAmB;IACnB,aAAa;IACb;AACJ;;AAEA;IACI,aAAa;IACb,YAAY;IACZ,gBAAgB;AACpB;;AAEA;IACI;AACJ;;AAEA;IACI,YAAY;IACZ,mBAAmB;IACnB,WAAW;AACf;;AAEA;IACI,sBAAsB;IACtB,YAAY;IACZ;AACJ;;AAEA;IACI,qBAAqB;IACrB,YAAY;IACZ,WAAW;AACf;;AAEA;IACI,yBAAyB;IACzB;AACJ;;AAEA;IACI,WAAW;IACX,qBAAqB;IACrB,YAAY;IACZ,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,yBAAyB;IACzB;AACJ","sourcesContent":[".user-container {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 10px;\n}\n\n.single-user {\n    height: 310px;\n    width: 360px;\n    text-align: center;\n    background-color: grey;\n    border-radius: 30px;\n    padding: 10px;\n    overflow: scroll\n}\n\n.user-pic {\n    height: 100px;\n    width: 100px;\n    margin-top: 10px;\n}\n\n.user::-webkit-scrollbar {\n    display: none\n}\n\nbutton {\n    border: none;\n    border-radius: 10px;\n    margin: 5px;\n}\n\n.back-button:hover {\n    background-color: grey;\n    color: white;\n    transition: 0.3s\n}\n\n.edit-button {\n    background-color: red;\n    color: white;\n    width: 50px;\n}\n\n.edit-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}\n\n.delete-button {\n    width: 50px;\n    background-color: red;\n    color: white;\n    border: solid black 2px;\n    border-radius: 10px;\n}\n\n.delete-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".user-container {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 10px;\n}\n\n.single-user {\n    height: 310px;\n    width: 360px;\n    text-align: center;\n    background-color: grey;\n    border-radius: 30px;\n    padding: 10px;\n    overflow: scroll\n}\n\n.user-pic {\n    height: 100px;\n    width: 100px;\n    margin-top: 10px;\n}\n\n.user::-webkit-scrollbar {\n    display: none\n}\n\nbutton {\n    border: none;\n    border-radius: 10px;\n    margin: 5px;\n}\n\n.back-button:hover {\n    background-color: grey;\n    color: white;\n    transition: 0.3s\n}\n\n.edit-button {\n    background-color: red;\n    color: white;\n    width: 50px;\n}\n\n.edit-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}\n\n.delete-button {\n    width: 50px;\n    background-color: red;\n    color: white;\n    border: none;\n    border-radius: 10px;\n}\n\n.delete-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}", "",{"version":3,"sources":["webpack://./client/features/styles/User.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,YAAY;AAChB;;AAEA;IACI,aAAa;IACb,YAAY;IACZ,kBAAkB;IAClB,sBAAsB;IACtB,mBAAmB;IACnB,aAAa;IACb;AACJ;;AAEA;IACI,aAAa;IACb,YAAY;IACZ,gBAAgB;AACpB;;AAEA;IACI;AACJ;;AAEA;IACI,YAAY;IACZ,mBAAmB;IACnB,WAAW;AACf;;AAEA;IACI,sBAAsB;IACtB,YAAY;IACZ;AACJ;;AAEA;IACI,qBAAqB;IACrB,YAAY;IACZ,WAAW;AACf;;AAEA;IACI,yBAAyB;IACzB;AACJ;;AAEA;IACI,WAAW;IACX,qBAAqB;IACrB,YAAY;IACZ,YAAY;IACZ,mBAAmB;AACvB;;AAEA;IACI,yBAAyB;IACzB;AACJ","sourcesContent":[".user-container {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 10px;\n}\n\n.single-user {\n    height: 310px;\n    width: 360px;\n    text-align: center;\n    background-color: grey;\n    border-radius: 30px;\n    padding: 10px;\n    overflow: scroll\n}\n\n.user-pic {\n    height: 100px;\n    width: 100px;\n    margin-top: 10px;\n}\n\n.user::-webkit-scrollbar {\n    display: none\n}\n\nbutton {\n    border: none;\n    border-radius: 10px;\n    margin: 5px;\n}\n\n.back-button:hover {\n    background-color: grey;\n    color: white;\n    transition: 0.3s\n}\n\n.edit-button {\n    background-color: red;\n    color: white;\n    width: 50px;\n}\n\n.edit-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}\n\n.delete-button {\n    width: 50px;\n    background-color: red;\n    color: white;\n    border: none;\n    border-radius: 10px;\n}\n\n.delete-button:hover {\n    background-color: crimson;\n    transition: 0.3s\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

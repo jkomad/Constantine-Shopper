@@ -23,7 +23,7 @@ const usersSlice = createSlice({
             return action.payload
         }),
         builder.addCase(deleteUser.fulfilled, (state, action) => {
-            state.splice(action.payload.id-1)
+            state.splice(action.payload.id-1, 1)
             return state
         })
     }

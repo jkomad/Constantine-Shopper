@@ -38,9 +38,9 @@ const User = () => {
                 <div className='buttons'>
                     <button className='back-button' onClick={handleClick}>View All Users</button>
                     <button className='edit-button' onClick={() => setEditStatus(true)}>Edit</button>
+                    <button className='delete-button'>X</button>
                 </div>
             </div>
-            <button className='delete-button' onClick={handleDelete}>X</button>
         </div>
         :
         <>
@@ -50,6 +50,7 @@ const User = () => {
                 <h1>{user.username}</h1>
                 <h2>{user.email}</h2>
                 <h3>{user.address}</h3>
+                <button className='delete-button'>X</button>
             </div>
         </div>
         </>
