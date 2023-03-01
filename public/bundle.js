@@ -6500,6 +6500,128 @@ var logout = authSlice.actions.logout;
 
 /***/ }),
 
+/***/ "./client/features/editUserForm/editUserForm.js":
+/*!******************************************************!*\
+  !*** ./client/features/editUserForm/editUserForm.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _user_userSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user/userSlice */ "./client/features/user/userSlice.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var EditUser = function EditUser(_ref) {
+  var id = _ref.id;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    username = _useState2[0],
+    setUsername = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    email = _useState4[0],
+    setEmail = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState6 = _slicedToArray(_useState5, 2),
+    address = _useState6[0],
+    setAddress = _useState6[1];
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var handleSubmit = function handleSubmit(evt) {
+    evt.preventDefault();
+    var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (username === '') {
+      evt.target.username.style.color = 'red';
+      evt.target.username.value = 'Choose a new username!';
+    }
+    if (email === '' || !email.match(emailFormat)) {
+      evt.target.email.style.color = 'red';
+      evt.target.email.value = 'Choose a valid email!';
+    }
+    if (address === '') {
+      evt.target.address.style.color = 'red';
+      evt.target.address.value = 'Choose a new address!';
+    }
+    if (username !== '' && email.match(emailFormat) && address !== '') {
+      var editedUser = {
+        id: id,
+        username: username,
+        email: email,
+        address: address
+      };
+      evt.target.username.value = '';
+      evt.target.email.value = '';
+      evt.target.address.value = '';
+      dispatch((0,_user_userSlice__WEBPACK_IMPORTED_MODULE_2__.editUser)(editedUser));
+      editStatus(false);
+    }
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "form-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "form-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit User Information")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    id: "edit-user",
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "firstName"
+  }, "Choose a new username:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    name: "username",
+    type: "text",
+    placeholder: "Username...",
+    value: username,
+    onChange: function onChange(evt) {
+      evt.target.style.color = 'black';
+      setUsername(evt.target.value);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "email"
+  }, "Choose a new email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    name: "email",
+    type: "text",
+    placeholder: "Email...",
+    value: email,
+    onChange: function onChange(evt) {
+      evt.target.style.color = 'black';
+      setEmail(evt.target.value);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "address"
+  }, "Choose a new address:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    name: "address",
+    type: "text",
+    placeholder: "Address...",
+    value: address,
+    onChange: function onChange(evt) {
+      evt.target.style.color = 'black';
+      setAddress(evt.target.value);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "edit-menu-buttons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "submit"
+  }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return editStatus(false);
+    }
+  }, "Cancel"))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditUser);
+
+/***/ }),
+
 /***/ "./client/features/home/Home.js":
 /*!**************************************!*\
   !*** ./client/features/home/Home.js ***!
@@ -6794,21 +6916,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _userSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userSlice */ "./client/features/user/userSlice.js");
+/* harmony import */ var _editUserForm_editUserForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../editUserForm/editUserForm */ "./client/features/editUserForm/editUserForm.js");
+
 
 
 
 
 var User = function User() {
   var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_userSlice__WEBPACK_IMPORTED_MODULE_2__.selectUser);
-  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)(),
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
     id = _useParams.id;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_userSlice__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser)(id));
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, user.username);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_editUserForm_editUserForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    id: user.id
+  }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (User);
 
@@ -6824,6 +6950,7 @@ var User = function User() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "editUser": () => (/* binding */ editUser),
 /* harmony export */   "fetchSingleUser": () => (/* binding */ fetchSingleUser),
 /* harmony export */   "selectUser": () => (/* binding */ selectUser)
 /* harmony export */ });
@@ -6858,6 +6985,33 @@ var fetchSingleUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsy
     return _ref.apply(this, arguments);
   };
 }());
+var editUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsyncThunk)('users/editUser', /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(editedUser) {
+    var id, username, email, address, _yield$axios$put, data;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          id = editedUser.id, username = editedUser.username, email = editedUser.email, address = editedUser.address;
+          _context2.next = 3;
+          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/users/".concat(id, "/edit"), {
+            username: username,
+            email: email,
+            address: address
+          });
+        case 3:
+          _yield$axios$put = _context2.sent;
+          data = _yield$axios$put.data;
+          return _context2.abrupt("return", data);
+        case 6:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function (_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}());
 var userSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   name: 'user',
   initialState: initialState,
@@ -6865,6 +7019,9 @@ var userSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   extraReducers: function extraReducers(builder) {
     builder.addCase(fetchSingleUser.fulfilled, function (state, action) {
       return action.payload;
+    }), builder.addCase(editUser.fulfilled, function (state, action) {
+      state.user = action.payload;
+      return state;
     });
   }
 });
