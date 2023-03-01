@@ -59,7 +59,7 @@
     margin-top: 10px;
 }
 
-.user:hover {
+.user:not(.single-user):hover {
     height: 310px;
     width: 370px;
     transition: 0.3s

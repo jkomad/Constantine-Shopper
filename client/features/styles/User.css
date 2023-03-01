@@ -5,8 +5,8 @@
     margin: 10px;
 }
 
-.user {
-    height: 300px;
+.single-user {
+    height: 310px;
     width: 360px;
     text-align: center;
     background-color: grey;
@@ -25,7 +25,38 @@
     display: none
 }
 
-.return {
+button {
     border: none;
     border-radius: 10px;
+    margin: 5px;
+}
+
+.back-button:hover {
+    background-color: grey;
+    color: white;
+    transition: 0.3s
+}
+
+.edit-button {
+    background-color: red;
+    color: white;
+    width: 50px;
+}
+
+.edit-button:hover {
+    background-color: crimson;
+    transition: 0.3s
+}
+
+.delete-button {
+    width: 50px;
+    background-color: red;
+    color: white;
+    border: solid black 2px;
+    border-radius: 10px;
+}
+
+.delete-button:hover {
+    background-color: crimson;
+    transition: 0.3s
 }
