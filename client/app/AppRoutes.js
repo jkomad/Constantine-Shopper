@@ -11,6 +11,7 @@ import Users from "../features/users/Users";
 import User from "../features/user/User";
 import { me } from "./store";
 import { fetchUsers } from "../features/users/usersSlice";
+import AddProduct from "../features/products/AddProduct";
 /**
  * COMPONENT
  */
@@ -53,6 +54,7 @@ const AppRoutes = () => {
           />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/products/add" element={<AddProduct />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<User userId={userId} />} /> // pass userId prop to User component
         </Routes>
