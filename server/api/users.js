@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { models: { User }} = require('../db')
 
+// GET /api/users
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -16,6 +17,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// GET /api/users/:id
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params
@@ -40,6 +42,22 @@ router.delete('/:id', async (req, res, next) => {
   } catch (err) {
       console.error(err.message)
       next(err)
+  }
+})
+
+// PUT /api/users/:id/edit
+router.put('/:id/edit', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const user = await User.findByPk(id, {
+      attributes: ['id', 'username', 'email', 'address']
+    })
+    user.set(req.body)
+    await user.save()
+    res.json(user)
+  } catch (err) {
+    console.error(err.message)
+    next(err)
   }
 })
 

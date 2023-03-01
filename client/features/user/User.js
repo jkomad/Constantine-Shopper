@@ -1,8 +1,9 @@
 import '../styles/User.css'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
-import { selectUser, fetchSingleUser, clearUserState, deleteUser } from './userSlice'
+import { useParams } from 'react-router-dom'
+import { selectUser, fetchSingleUser } from './userSlice'
+import EditUser from '../editUserForm/editUserForm'
 
 const User = () => {
     const user = useSelector(selectUser)
@@ -28,33 +29,8 @@ const User = () => {
 
     return (
         <>
-        {!editStatus ? 
-        <div className='user-container'>
-            <div className='single-user'>
-                <img className='user-pic' src={user.imgUrl}/>
-                <h1>{user.username}</h1>
-                <h2>{user.email}</h2>
-                <h3>{user.address}</h3>
-                <div className='buttons'>
-                    <button className='back-button' onClick={handleClick}>View All Users</button>
-                    <button className='edit-button' onClick={() => setEditStatus(true)}>Edit</button>
-                    <button className='delete-button'>X</button>
-                </div>
-            </div>
-        </div>
-        :
-        <>
-        <div className='user-container'>
-            <div className='single-user'>
-                <img className='user-pic' src={user.imgUrl}/>
-                <h1>{user.username}</h1>
-                <h2>{user.email}</h2>
-                <h3>{user.address}</h3>
-                <button className='delete-button'>X</button>
-            </div>
-        </div>
-        </>
-        }
+        <div>{user.username}</div>
+        <EditUser id={user.id}/>
         </>
     )
 }
