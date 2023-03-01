@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts, selectProducts } from "./productsSlice";
+import AddProduct from "./AddProduct";
+import { Link, Routes, Route } from "react-router-dom";
 
 const Products = () => {
   const products = useSelector(selectProducts);
@@ -12,6 +14,10 @@ const Products = () => {
 
   return (
     <div>
+      {/* <Routes>
+        <Link to="/addProduct"/>
+        <Route path="/addProduct" element={AddProduct} />
+      </Routes> */}
       <h1>All Products:</h1>
       {products.map((product) => (
         <div className="productContainer">
