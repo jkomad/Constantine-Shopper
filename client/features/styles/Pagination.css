@@ -1,0 +1,27 @@
+.page-nav {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    font-size: x-large;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+}
+
+.pagination li {
+    list-style: none;
+    width: 30px;
+    text-align: center;
+    border: solid black 2px;
+    margin: 5px;
+}
+
+.pagination li:hover {
+    background-color: grey;
+    transition: 0.3s
+}
