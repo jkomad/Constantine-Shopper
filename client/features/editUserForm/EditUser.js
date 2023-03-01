@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { editUser } from '../user/userSlice'
+import { useNavigate } from 'react-router-dom'
+import { editUser, deleteUser } from '../user/userSlice'
+import { fetchUsers } from '../users/usersSlice'
 
-const EditUser = ({id, /*editStatus*/}) => {
+const EditUser = ({id, editStatus}) => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
+    const [submitStatus, setSubmitStatus] = useState(false)
+    const [deleteStatus, setDeleteStatus] = useState(false)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        setUsername('')
+        setEmail('')
+        setAddress('')
+    }, [submitStatus, deleteStatus])
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
@@ -34,13 +45,18 @@ const EditUser = ({id, /*editStatus*/}) => {
                 address,
             }
 
-            evt.target.username.value = ''
-            evt.target.email.value = ''
-            evt.target.address.value = ''
-
             dispatch(editUser(editedUser))
+            setSubmitStatus(true)
             editStatus(false)
-        }    }
+        }    
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteUser(id))
+        dispatch(fetchUsers())
+        navigate('/users')
+        deleteStatus(true)
+    }
 
     return (
         <div className='form-container'>
@@ -81,6 +97,7 @@ const EditUser = ({id, /*editStatus*/}) => {
                 <div className='edit-menu-buttons'>
                     <button type="submit">Submit</button>
                     <button onClick={() => editStatus(false)}>Cancel</button>
+                    <button className='delete-button' onClick={handleDelete}>Delete User</button>
                 </div>
             </form>
         </div>    

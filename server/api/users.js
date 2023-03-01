@@ -30,6 +30,22 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+// PUT /api/users/:id/edit
+router.put('/:id/edit', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const user = await User.findByPk(id, {
+      attributes: ['id', 'username', 'email', 'address', 'imgUrl']
+    })
+    user.set(req.body)
+    await user.save()
+    res.json(user)
+  } catch (err) {
+    console.error(err.message)
+    next(err)
+  }
+})
+
 // DELETE /api/users/:id
 router.delete('/:id', async (req, res, next) => {
   try {
@@ -45,20 +61,5 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-// PUT /api/users/:id/edit
-router.put('/:id/edit', async (req, res, next) => {
-  try {
-    const { id } = req.params
-    const user = await User.findByPk(id, {
-      attributes: ['id', 'username', 'email', 'address']
-    })
-    user.set(req.body)
-    await user.save()
-    res.json(user)
-  } catch (err) {
-    console.error(err.message)
-    next(err)
-  }
-})
 
 module.exports = router

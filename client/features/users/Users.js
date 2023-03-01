@@ -9,7 +9,7 @@ import { deleteUser } from './usersSlice'
 const Users = () => {
     const users = useSelector(selectUsers)
     const [deleteStatus, setDeleteStatus] = useState(false)
-    
+
     const dispatch = useDispatch()
 
     useEffect(() => {
