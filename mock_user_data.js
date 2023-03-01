@@ -1,12 +1,12 @@
-const users = [{"id":1,"username":"prolse0","password":"reciprocated","email":"erigden0@statcounter.com","address":"1 Farragut Parkway","isAdmin":false},
-{"id":2,"username":"cgrubbe1","password":"frankfurters","email":"bchimienti1@smugmug.com","address":"6043 Waxwing Junction","isAdmin":true},
-{"id":3,"username":"mcorden2","password":"appreciating","email":"aligoe2@umich.edu","address":"3 Banding Place","isAdmin":false},
-{"id":4,"username":"obeach3","password":"sociologists","email":"lbarneville3@admin.ch","address":"32464 Union Pass","isAdmin":true},
-{"id":5,"username":"dlevi4","password":"dressmaker's","email":"dcluelow4@myspace.com","address":"75 Hintze Park","isAdmin":true},
-{"id":6,"username":"bpochin5","password":"returnable's","email":"egentery5@hao123.com","address":"545 Eagle Crest Park","isAdmin":true},
-{"id":7,"username":"dtubby6","password":"admiration's","email":"swethered6@seattletimes.com","address":"58448 Orin Parkway","isAdmin":false},
-{"id":8,"username":"dmelloi7","password":"breakwater's","email":"gemerine7@unc.edu","address":"0 Claremont Alley","isAdmin":false},
-{"id":9,"username":"asidnall8","password":"entanglement","email":"dhospital8@diigo.com","address":"047 Trailsway Plaza","isAdmin":true},
-{"id":10,"username":"cleconte9","password":"relaxation's","email":"jmccready9@skyrock.com","address":"1847 Fremont Park","isAdmin":true}]
+const users = [{"id":1,"username":"ematzeitis0","password":"amOCicO6","isAdmin":true,"email":"vfarloe0@google.nl","address":"85 Bluestem Junction"},
+{"id":2,"username":"fconigsby1","password":"divPe7mfk1v","isAdmin":true,"email":"leby1@delicious.com","address":"60 Warbler Court"},
+{"id":3,"username":"cabdey2","password":"WJnfJuTwY3","isAdmin":true,"email":"jwayte2@w3.org","address":"58 Ryan Crossing"},
+{"id":4,"username":"dcapineer3","password":"KEuPclK57","isAdmin":true,"email":"bbambrough3@google.fr","address":"73662 Buell Street"},
+{"id":5,"username":"cgeroldini4","password":"wC1b5X3b","isAdmin":false,"email":"elowthorpe4@netscape.com","address":"11592 Prentice Center"},
+{"id":6,"username":"amaccrossan5","password":"ZbBXJU","isAdmin":true,"email":"tewence5@geocities.com","address":"066 Carpenter Drive"},
+{"id":7,"username":"btheodoris6","password":"gg5qfHqV8","isAdmin":false,"email":"bzoephel6@tripod.com","address":"34 Rigney Terrace"},
+{"id":8,"username":"bgarnall7","password":"QyHpItXy","isAdmin":true,"email":"nbownas7@canalblog.com","address":"95354 Mifflin Street"},
+{"id":9,"username":"cmacgall8","password":"uR4vE8c31ES","isAdmin":true,"email":"rsadat8@seesaa.net","address":"46740 Lake View Drive"},
+{"id":10,"username":"rlathan9","password":"uf1FHF","isAdmin":true,"email":"msnowball9@macromedia.com","address":"99 Mayfield Avenue"}]
 
 module.exports = users

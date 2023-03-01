@@ -1,0 +1,70 @@
+.ui {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar * {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.ui>button {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.ui>select {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#users-header {
+    text-align: center;
+}
+
+
+#users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: white;
+}
+
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+#users a {
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}
+
+.user {
+    height: 300px;
+    width: 360px;
+    text-align: center;
+    background-color: grey;
+    border-radius: 30px;
+    padding: 10px;
+    overflow: scroll
+}
+
+.user-pic {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.user:not(.single-user):hover {
+    height: 310px;
+    width: 370px;
+    transition: 0.3s
+}
+
+.user::-webkit-scrollbar {
+    display: none;
+}

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
 let initialState = {}
@@ -18,20 +18,35 @@ export const editUser = createAsyncThunk('users/editUser', async (editedUser) =>
     return data
 })
 
+export const deleteUser = createAsyncThunk('users/deleteUser', async (id) => {
+    const { data } = await axios.delete(`/api/users/${id}`)
+    return data
+})
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        clearUserState: (state, action) => {
+            state = {}
+            return state
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchSingleUser.fulfilled, (state, action) => {
             return action.payload
         }),
         builder.addCase(editUser.fulfilled, (state, action) => {
-            state.user = action.payload
+            state = action.payload
+            return state
+        }), 
+        builder.addCase(deleteUser.fulfilled, (state, action) => {
+            state = {}
             return state
         })
     }
 })
 
+export const { clearUserState } = userSlice.actions
 export const selectUser = (state) => state.user
 export default userSlice.reducer
