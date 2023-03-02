@@ -67,4 +67,9 @@ form div {
   font-size: 20px;
   color:azure;
 }
+@media only screen and (max-width: 600px) {
+  .Navbar h1{
+    font-size: 0%;
+  }
+}
 /* Navbar and User Forms End */
