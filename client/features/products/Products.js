@@ -2,26 +2,30 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts, selectProducts } from "./productsSlice";
 import AddProduct from "./AddProduct";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useParams } from "react-router-dom";
 import { me } from "../auth/authSlice";
+import { deleteProductAsync } from "../singleProduct/singleProductSlice";
 
 const Products = () => {
   const products = useSelector(selectProducts);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
 
-  console.log(isAdmin)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAllProducts())
-  }, []);
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
 
-  console.log(me)
+  // const handleDelete = () => {
+  //   dispatch(deleteProductAsync(id))
+  //     // .then(dispatch(fetchAllProducts()));
+  // };
 
+  console.log(me);
 
   return (
     <div>
-        <Link to="/products/add">Add a Product</Link>
+      <Link to="/products/add">Add a Product</Link>
       <h1>All Products:</h1>
       {products.map((product) => (
         <div key={product.id} className="productContainer">
@@ -30,11 +34,17 @@ const Products = () => {
           <h4>{product.price}</h4>
           <h4>{product.description}</h4>
           <button>add to cart</button>
-          {isAdmin ? <button>REMOVE PRODUCT</button> : <></>}
+          {isAdmin ? (
+            <button onClick={() => dispatch(deleteProductAsync(product.id))}>
+              REMOVE PRODUCT
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
