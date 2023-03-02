@@ -7,10 +7,6 @@ const OrderItems = db.define("orderItems", {
     allowNull: false,
     defaultValue: 0,
   },
-  isFulfilled: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
 });
 
 module.exports = OrderItems;
