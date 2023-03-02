@@ -1,0 +1,43 @@
+.productsBody{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.productContainer{
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px black;
+  width: 400px;
+  margin: 10px;
+}
+
+.productImg{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px;
+  max-height: 100px;
+}
+
+.productInfo{
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  justify-content: flex-start;
+  padding: 15px;
+  border: solid 1px lightgrey;
+  margin: 5px;
+}
+
+.margin2px {
+  margin: 2px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.deleteButton {
+  background-color: rgb(173, 173, 173);
+}
+
