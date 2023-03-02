@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 a {
@@ -28,10 +28,11 @@ form div {
   display: flex;
   left: 0px;
   top: 0px;
-  background-color: darkgray;
+  background-color: rgb(47, 160, 108);
   justify-content: space-between;
+  align-items: center;
 }
-.Navbar div{
+.Navbar h1{
   color: azure;
 }
 .Login{
@@ -53,8 +54,13 @@ form div {
   height: 30px;
 }
 .Login button:hover{
-  background-color: rgb(206, 206, 206);
+  background-color: rgb(47, 160, 108);
+  color: azure;
   box-shadow: 1px 1px 1px black;
 }
 
+.fa{
+  font-size: 20px;
+  color:azure;
+}
 /* Navbar and User Forms End */
