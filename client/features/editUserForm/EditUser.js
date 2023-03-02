@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { editUser, deleteUser } from '../user/userSlice'
 import { fetchUsers } from '../users/usersSlice'
@@ -97,7 +97,7 @@ const EditUser = ({id, editStatus}) => {
                 <div className='edit-menu-buttons'>
                     <button type="submit">Submit</button>
                     <button onClick={() => editStatus(false)}>Cancel</button>
-                    <button className='delete-button' onClick={handleDelete}>Delete User</button>
+                    <button className='delete-button' onClick={handleDelete}>Delete Account</button>
                 </div>
             </form>
         </div>    

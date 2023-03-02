@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { selectUser, fetchSingleUser, clearUserState } from './userSlice'
 import EditUser from '../editUserForm/EditUser'
+import { me } from '../auth/authSlice'
 
 const User = () => {
     const user = useSelector(selectUser)
+    const isAdmin = useSelector(state => state.auth.me.isAdmin)
     const {id} = useParams()
     const [editStatus, setEditStatus] = useState(false)
 
@@ -32,7 +34,10 @@ const User = () => {
                 <h2>{user.email}</h2>
                 <h3>{user.address}</h3>
                 <div className='buttons'>
-                    <button className='back-button' onClick={handleClick}>View All Users</button>
+                    {!isAdmin ? 
+                    <></>
+                    :
+                    <button className='back-button' onClick={handleClick}>View All Users</button>}
                     <button className='edit-button' onClick={() => setEditStatus(true)}>Edit</button>
                 </div>
             </div>
