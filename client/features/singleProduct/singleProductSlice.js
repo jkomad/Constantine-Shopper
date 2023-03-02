@@ -51,10 +51,7 @@ export const singleProductSlice = createSlice({
       state.imgUrl = action.payload.imgUrl;
     });
     builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
-      const newState = state.filter(
-        (product) => product.id !== action.payload.id
-      );
-      return newState;
+      return action.payload;
     });
   },
 });

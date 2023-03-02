@@ -32,7 +32,7 @@ router.put("/:id", async (req, res, next) => {
 
     const updatedProduct = await productToBeUpdated.update(req.body);
     res.send(updatedProduct);
-    
+
   } catch (error) {
     next(error);
   }
