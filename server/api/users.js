@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User }} = require('../db')
+const { models: { User, Order, OrderItems }} = require('../db')
 
 // GET /api/users
 router.get('/', async (req, res, next) => {
@@ -58,6 +58,25 @@ router.delete('/:id', async (req, res, next) => {
   } catch (err) {
       console.error(err.message)
       next(err)
+  }
+})
+
+// GET /api/users/:id/cart
+router.get('/:id/order', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const user = await User.findByPk(id, {
+      attributes: ['id', 'username', 'email', 'address', 'imgUrl']
+    })
+    const order = await Order.findOne({
+      where: {
+        userId: user.id
+      },
+      include: [OrderItems]
+    })
+    res.json(order)
+  } catch (error){
+    next(error)
   }
 })
 
