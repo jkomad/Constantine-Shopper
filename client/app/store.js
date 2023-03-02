@@ -5,6 +5,7 @@ import productsReducer from '../features/products/productsSlice';
 import singleProductReducer from '../features/singleProduct/singleProductSlice';
 import usersReducer from '../features/users/usersSlice';
 import singleUserReducer from '../features/user/userSlice'
+import cartReducer from '../features/cart/cartSlice'
 
 
 const store = configureStore({
@@ -14,6 +15,7 @@ const store = configureStore({
     singleProduct: singleProductReducer,
     users: usersReducer,
     user: singleUserReducer,
+    cart: cartReducer
     // orders: ordersReducer,
     // singleOrder: singleOrderReducer
   },

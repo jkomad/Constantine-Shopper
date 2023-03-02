@@ -26,7 +26,7 @@ const Navbar = () => {
             </div>
             {/* The navbar will show these links after you log in */}
             <div>
-              <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to="/cart"></Link>
+              <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`users/${userId}/cart`}></Link>
               <Link title='Home' className="fa fa-fw fa-home" to="/home"></Link>
               <Link title='My Account' className="fa fa-fw fa-user" to={`users/${userId}`}></Link>
             <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome} to="/login"></Link>
@@ -40,7 +40,7 @@ const Navbar = () => {
             </div>
             {/* The navbar will show these links after you log in */}
             <div>
-              <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to="/cart"></Link>
+              <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/${userId}/cart`}></Link>
               <Link title='Home' className="fa fa-fw fa-home" to="/home"></Link>
               <Link title='My Account' className="fa fa-fw fa-user" to={`users/${userId}`}></Link>
              <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome} to="/login"></Link>
@@ -54,7 +54,7 @@ const Navbar = () => {
             </div>
             {/* The navbar will show these links before you log in */}
             <div>
-            <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to="/cart"></Link>
+            <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/${userId}/cart`}></Link>
             <Link title='Sign In' className="fa fa-fw fa-sign-in" to="/login"></Link>
             <Link title='Sign Up' className="fa fa-fw fa-user-plus" to="/signup"></Link>
             </div>

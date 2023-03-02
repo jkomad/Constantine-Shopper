@@ -1,40 +1,35 @@
 'use strict'
 
-const {db, models: {User, Product} } = require('../server/db')
+const { db, models: { User, Product, Order, OrderItems } } = require('../server/db')
 const users = require('../mock_user_data')
 const products = require('../mock_product_data')
 
-/**
- * seed - this function clears the database, updates tables to
- *      match the models, and populates the database.
- */
 async function seed() {
-  await db.sync({ force: true }) // clears db and matches models to tables
+  await db.sync({ force: true })
   console.log('db synced!')
-  // Creating Users
-  await Promise.all(users.map((user) => {
+
+  const createdUsers = await Promise.all(users.map((user) => {
     return User.create(user)
   }))
-  await Promise.all(products.map((product) => {
+
+  const createdProducts = await Promise.all(products.map((product) => {
     return Product.create(product)
   }))
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${products.length} products`)
+  const order = await createdUsers[0].createOrder({
+    total: 500,
+    isFulfilled: false
+  })
+
+  await order.addProduct(createdProducts[0], { through: { quantity: 2 } })
+
+  console.log(`seeded ${createdUsers.length} users`)
+  console.log(`seeded ${createdProducts.length} products`)
   console.log(`seeded successfully`)
-  // return {
-  //   users: {
-  //     cody: users[0],
-  //     murphy: users[1]
-  //   }
-  // }
 }
 
-/*
- We've separated the `seed` function from the `runSeed` function.
- This way we can isolate the error handling and exit trapping.
- The `seed` function is concerned only with modifying the database.
-*/
+
+
 async function runSeed() {
   console.log('seeding...')
   try {
@@ -49,14 +44,8 @@ async function runSeed() {
   }
 }
 
-/*
-  Execute the `seed` function, IF we ran this module directly (`node seed`).
-  `Async` functions always return a promise, so we can use `catch` to handle
-  any errors that might occur inside of `seed`.
-*/
 if (module === require.main) {
   runSeed()
 }
 
-// we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed
