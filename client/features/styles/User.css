@@ -50,7 +50,7 @@ button {
 }
 
 .delete-button {
-    width: 50px;
+    width: 150px;
     background-color: red;
     color: white;
     border: none;
@@ -101,7 +101,7 @@ button {
     margin: 10px;
 }
 
-.edit-menu-buttons button {
+.edit-menu-buttons button:not(.delete-button) {
     width: 100px
 }
 
