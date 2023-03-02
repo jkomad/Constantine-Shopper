@@ -52,11 +52,15 @@ form div {
   cursor: pointer;
   width: 100px;
   height: 30px;
+  border-bottom:3px solid rgb(71, 71, 71);
+  border-right:3px solid rgb(71, 71, 71);
 }
 .Login button:hover{
   background-color: rgb(47, 160, 108);
   color: azure;
-  box-shadow: 1px 1px 1px black;
+  box-shadow: 1px 1px 1px rgb(100, 100, 100);
+  border-bottom:2px solid rgb(18, 61, 41);
+  border-right:2px solid rgb(18, 61, 41);
 }
 
 .fa{
