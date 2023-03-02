@@ -29,7 +29,7 @@ const Navbar = () => {
               <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to="/cart"></Link>
               <Link title='Home' className="fa fa-fw fa-home" to="/home"></Link>
               <Link title='My Account' className="fa fa-fw fa-user" to={`users/${userId}`}></Link>
-            <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome}></Link>
+            <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome} to="/login"></Link>
             </div>
           </div>
         ) :isLoggedIn ? (
@@ -43,7 +43,7 @@ const Navbar = () => {
               <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to="/cart"></Link>
               <Link title='Home' className="fa fa-fw fa-home" to="/home"></Link>
               <Link title='My Account' className="fa fa-fw fa-user" to={`users/${userId}`}></Link>
-            <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome}></Link>
+             <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome} to="/login"></Link>
             </div>
           </div>
         ) : (
