@@ -68,3 +68,16 @@
 .user::-webkit-scrollbar {
     display: none;
 }
+
+.user-container > .delete-button {
+    width: 50px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.delete-button:hover {
+    background-color: crimson;
+    transition: 0.3s
+}

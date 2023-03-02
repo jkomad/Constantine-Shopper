@@ -49,19 +49,6 @@ button {
     transition: 0.3s
 }
 
-.delete-button {
-    width: 150px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 10px;
-}
-
-.delete-button:hover {
-    background-color: crimson;
-    transition: 0.3s
-}
-
 /* EditUser Component */
 
 .container {
@@ -108,5 +95,18 @@ button {
 .edit-menu-buttons button:not(.delete-button):hover {
     background-color: grey;
     color: white;
+    transition: 0.3s
+}
+
+.edit-menu-buttons > .delete-button {
+    width: 150px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.delete-button:hover {
+    background-color: crimson;
     transition: 0.3s
 }
