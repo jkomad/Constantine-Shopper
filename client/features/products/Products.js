@@ -1,3 +1,5 @@
+import "../styles/Products.css";
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts, selectProducts } from "./productsSlice";
@@ -19,20 +21,28 @@ const Products = () => {
   console.log(me);
 
   return (
-    <div>
-      <Link to="/products/add">Add a Product</Link>
+    <>
       <h1>All Products:</h1>
-      {products.map((product) => (
-        <div key={product.id} className="productContainer">
-          <img src={product.imgUrl}></img>
-          <Link to={`/products/${product.id}`}>{product.name}</Link>
-          <h4>{`$${product.price}`}</h4>
-          <h4>{product.description}</h4>
-          <button>add to cart</button>
-          {isAdmin ? <DeleteProduct product={product}>REMOVE PRODUCT</DeleteProduct> : <></>}
-        </div>
-      ))}
-    </div>
+      {isAdmin ? <Link to="/products/add">Add a Product</Link> : ""}
+      <div className="productsBody">
+        {products.map((product) => (
+          <div key={product.id} className="productContainer">
+            <img className="productImg" src={product.imgUrl}></img>
+            <div className="productInfo">
+              <Link to={`/products/${product.id}`}>{product.name}</Link>
+              <p className="margin2px">{`$${product.price}`}</p>
+              <p className="margin2px italic">{product.description.charAt(0).toUpperCase()+product.description.slice(1)}</p>
+              <button>add to cart</button>
+              {isAdmin ? (
+              <DeleteProduct className="deleteButton" product={product}>REMOVE PRODUCT</DeleteProduct>
+            ) : (
+              ""
+            )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
