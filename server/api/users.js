@@ -62,7 +62,7 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 // GET /api/users/:id/cart
-router.get('/:id/order', async (req, res, next) => {
+router.get('/:id/cart', async (req, res, next) => {
   try {
     const { id } = req.params
     const user = await User.findByPk(id, {
