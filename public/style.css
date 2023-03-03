@@ -73,3 +73,12 @@ form div {
   }
 }
 /* Navbar and User Forms End */
+/* Exit Button */
+
+.exit{
+  margin-left: 98%;
+  border: solid;
+  background-color: salmon;
+  border-radius: 50%;
+  padding: 1px;
+}

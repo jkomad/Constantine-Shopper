@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   selectSingleProduct,
   fetchSingleProduct,
@@ -10,6 +10,7 @@ import EditProductForm from "./EditProductForm";
 import { fetchAllProducts } from "../products/productsSlice";
 
 const SingleProduct = () => {
+  const isAdmin = useSelector((state) => state.auth.me.isAdmin);
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,7 +38,10 @@ const SingleProduct = () => {
 
   return (
     <div>
-      <img src={product.imgUrl} />
+      {isAdmin ? (<div>
+        <Link className="exit" to="/products">X</Link>
+      <div>
+        <img src={product.imgUrl} />
       <h1>{product.name}</h1>
       <h2>{product.price}</h2>
       <h3>{product.description}</h3>
@@ -47,6 +51,18 @@ const SingleProduct = () => {
       )}
       <button>Add to cart</button>
       <button onClick={() => handleDelete()}>Delete</button>
+      </div>
+      </div>):(
+      <div>
+    <Link className="exit" to="/products">X</Link>
+    <div>
+      <img src={product.imgUrl} />
+    <h1>{product.name}</h1>
+    <h2>{product.price}</h2>
+    <h3>{product.description}</h3>
+    <button>Add to cart</button>
+    </div>
+    </div>)}
     </div>
   );
 };

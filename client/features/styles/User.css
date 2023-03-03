@@ -9,17 +9,19 @@
 .single-user {
     height: 310px;
     width: 360px;
-    text-align: center;
-    background-color: grey;
+    background-color: rgb(79, 137, 110);
     border-radius: 30px;
     padding: 10px;
-    overflow: scroll
+    
 }
 
 .user-pic {
     height: 100px;
     width: 100px;
     margin-top: 10px;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: azure;
 }
 
 .user::-webkit-scrollbar {

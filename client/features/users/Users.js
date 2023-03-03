@@ -8,6 +8,7 @@ import Pagination from '../pagination/Pagination'
 //import uuid for our keys???
 
 const Users = () => {
+    const isAdmin = useSelector((state) => state.auth.me.isAdmin);
     const users = useSelector(selectUsers)
     const [deleteStatus, setDeleteStatus] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -28,6 +29,7 @@ const Users = () => {
     return (
         <>
         <h1 id='users-header'>All Users</h1>
+        {isAdmin ? (
         <div id='users'>
             {currentUsers.map((user) => {
                 return (
@@ -45,8 +47,9 @@ const Users = () => {
                     </div>
                 )
             })}
-        </div>
-        <Pagination itemsPerPage={usersPerPage} totalItems={users.length} setCurrentPage={setCurrentPage}/>
+        </div>) : "Ooops. You do not have access to this page. SOWWY :'("}
+        {isAdmin ? (<Pagination itemsPerPage={usersPerPage} totalItems={users.length} setCurrentPage={setCurrentPage}/>
+        ) : null}
         </>
     )
 }
