@@ -3,6 +3,7 @@
 const { db, models: { User, Product, Order, OrderItems } } = require('../server/db')
 const users = require('../mock_user_data')
 const products = require('../mock_product_data')
+const carts = require('../mock_cart_data')
 
 async function seed() {
   await db.sync({ force: true })
@@ -16,15 +17,21 @@ async function seed() {
     return Product.create(product)
   }))
 
-  const order = await createdUsers[0].createOrder({
-    total: 500,
-    isFulfilled: false
-  })
+  const createdCarts = await Promise.all(carts.map((cart) => {
+    return Order.create(cart)
+  }))
 
+  // const order = await createdUsers[0].createOrder({
+  //   total: 500,
+  //   isFulfilled: false
+  // })
+
+  const order = createdCarts[0]
   await order.addProduct(createdProducts[0], { through: { quantity: 2 } })
 
   console.log(`seeded ${createdUsers.length} users`)
   console.log(`seeded ${createdProducts.length} products`)
+  console.log(`seeded ${createdCarts.length} carts`)
   console.log(`seeded successfully`)
 }
 
