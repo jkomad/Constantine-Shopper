@@ -31,7 +31,7 @@ const AppRoutes = () => {
 
   return (
     <div>
-      {isLoggedIn && isAdmin ? (
+      { isLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
@@ -39,7 +39,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<User userId={userId}/>} /> // update route for logged in users
-          <Route path="/users/:id/cart" element={<Cart />} />
+          <Route path="/users/:id/cart" element={<Cart userId={userId}/>} />
         </Routes>
       ) : (
         <Routes>
