@@ -4,16 +4,16 @@ import { useParams } from 'react-router-dom'
 import { fetchAllProducts, selectProducts } from '../products/productsSlice'
 import { selectCart, fetchCart } from './cartSlice'
 
-const Cart = () => {    
+const Cart = ({user}) => {    
     const cart = useSelector(selectCart)
-    console.log(cart)
     const { id } = useParams()
+    const { cartInfo, orderItems } = cart
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchCart(id))
-    }, [])
+    }, [user])
 
     return (
         <div>

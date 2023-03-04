@@ -20,6 +20,7 @@ import Cart from "../features/cart/Cart";
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin)
+  const user = useSelector((state) => state.auth.me)
   const userId = useSelector((state) => state.auth.me.id); // get current user's id
   const dispatch = useDispatch();
 
@@ -39,7 +40,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<User userId={userId}/>} /> // update route for logged in users
-          <Route path="/users/:id/cart" element={<Cart userId={userId}/>} />
+          <Route path="/users/:id/cart" element={<Cart user={user}/>} />
         </Routes>
       ) : (
         <Routes>

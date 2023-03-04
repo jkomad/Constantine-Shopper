@@ -8,19 +8,27 @@ import {
 } from "./singleProductSlice";
 import EditProductForm from "./EditProductForm";
 import { fetchAllProducts } from "../products/productsSlice";
+import { addToCart, fetchCart, selectCart } from "../cart/cartSlice";
 
 const SingleProduct = () => {
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
+  const user = useSelector((state) => state.auth.me)
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
   const product = useSelector(selectSingleProduct);
+  const cart = useSelector(selectCart)
+  const { cartInfo, orderItems } = cart
 
   const [showEditForm, setShowEditForm] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    dispatch(fetchCart(user.id))
+  }, [user])
 
   const handleEditSubmit = () => {
     setShowEditForm(false);
@@ -36,6 +44,17 @@ const SingleProduct = () => {
       .then(dispatch(fetchAllProducts()));
   };
 
+  const handleAddToCart = () => {
+    const newOrder = {
+      id: user.id,
+      quantity: 1,
+      productId: product.id,
+      orderId: cartInfo.id, 
+      price: product.price
+    }
+    dispatch(addToCart(newOrder))
+  }
+
   return (
     <div>
       {isAdmin ? (<div>
@@ -49,7 +68,7 @@ const SingleProduct = () => {
       {showEditForm && (
         <EditProductForm product={product} onSubmit={handleEditSubmit} />
       )}
-      <button>Add to cart</button>
+      <button onClick={() => handleAddToCart()}>Add to cart</button>
       <button onClick={() => handleDelete()}>Delete</button>
       </div>
       </div>):(
@@ -60,7 +79,7 @@ const SingleProduct = () => {
     <h1>{product.name}</h1>
     <h2>{product.price}</h2>
     <h3>{product.description}</h3>
-    <button>Add to cart</button>
+    <button onClick={() => handleAddToCart()}>Add to cart</button>
     </div>
     </div>)}
     </div>
