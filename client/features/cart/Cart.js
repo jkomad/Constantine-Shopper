@@ -48,7 +48,7 @@ const Cart = () => {
 
     return (
         <div>
-            <h1>Your Cart</h1>
+            <h1 className='cart-header'>Your Cart</h1>
             <div className='productsBody'>
             {itemsToCheckout.map((item) => {
                 return (

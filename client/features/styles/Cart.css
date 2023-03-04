@@ -1,3 +1,7 @@
+.cart-header {
+    text-align: center;
+}
+
 .productsBody {
     display: flex;
     justify-content: center;
