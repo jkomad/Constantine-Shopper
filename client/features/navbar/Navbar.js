@@ -2,15 +2,20 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store';
+import { deleteCartState, fetchCart, selectCart } from '../cart/cartSlice';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
   const userId = useSelector((state) => state.auth.me.id);
+  const cart = useSelector(selectCart)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const logoutAndRedirectHome = () => {
     dispatch(logout());
+    dispatch(fetchCart(userId))
+    dispatch(deleteCartState())
     navigate('/login');
   };
 

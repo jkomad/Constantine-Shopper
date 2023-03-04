@@ -27,7 +27,12 @@ export const addToCart = createAsyncThunk('users/addToCart', async(newOrder) => 
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
-    reducers: {},
+    reducers: {
+        clearCartState: (state, action) => {
+            state = {}
+            return state
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchCart.fulfilled, (state, action) => {
             return action.payload
@@ -39,5 +44,6 @@ const cartSlice = createSlice({
     }
 })
 
+export const { deleteCartState } = cartSlice.actions
 export const selectCart = (state) => state.cart 
 export default cartSlice.reducer
