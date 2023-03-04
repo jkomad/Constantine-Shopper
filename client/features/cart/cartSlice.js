@@ -19,7 +19,6 @@ export const addToCart = createAsyncThunk('users/addToCart', async(newOrder) => 
         quantity,
         productId,
         orderId,
-        price
     })
     console.log(data)
     return data

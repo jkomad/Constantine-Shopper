@@ -106,7 +106,7 @@ router.post('/:id/cart/add', async(req, res, next) => {
       // res.json(order)
     const { quantity, productId, orderId } = req.body
     const orderItem = await OrderItems.findOrCreate({
-      where: { productId },
+      where: { productId, orderId },
       defaults: {
         quantity,
         productId,
@@ -116,13 +116,12 @@ router.post('/:id/cart/add', async(req, res, next) => {
     if(!orderItem.isNewRecord) {
       OrderItems.increment(
         'quantity', { by: 1, where: {
-          productId: productId
+          productId: productId,
         }}
       )
       await orderItem[0].save()
-      res.json(orderItem[0])
     } else {
-      res.json(orderItem)
+      res.json(orderItem[0])
     }
   } catch (err) {
     console.error(err.message)

@@ -21,6 +21,7 @@ const SingleProduct = () => {
   const { cartInfo, orderItems } = cart
 
   const [showEditForm, setShowEditForm] = useState(false);
+  const [addedItem, setAddedItem] = useState(false)
 
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
@@ -28,7 +29,8 @@ const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(fetchCart(user.id))
-  }, [user])
+    setAddedItem(false)
+  }, [user, addedItem])
 
   const handleEditSubmit = () => {
     setShowEditForm(false);
@@ -50,9 +52,9 @@ const SingleProduct = () => {
       quantity: 1,
       productId: product.id,
       orderId: cartInfo.id, 
-      price: product.price
     }
     dispatch(addToCart(newOrder))
+    setAddedItem(true)
   }
 
   return (
