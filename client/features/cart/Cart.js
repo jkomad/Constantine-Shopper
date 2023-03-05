@@ -63,7 +63,7 @@ const Cart = () => {
                 )
             })}
             </div>
-            <h1 className='total-price'>Total: ${cartInfo.total}.00</h1>
+            <h1 className='total-price'>Total: ${!cartInfo.total ? 0 : cartInfo.total}</h1>
         </div>
     )
 }
