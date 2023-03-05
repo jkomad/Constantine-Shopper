@@ -38,7 +38,6 @@ const Cart = () => {
         return itemsToCheckout
     }
     const itemsToCheckout = checkout(orderItems)
-    console.log(itemsToCheckout)
 
     return (
         <div>

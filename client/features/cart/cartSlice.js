@@ -7,8 +7,12 @@ const initialState = {
 }
 
 export const fetchCart = createAsyncThunk('users/fetchCart', async (id) => {
-    const { data } = await axios.get(`/api/users/${id}/cart`)
-    return data 
+    if(id === undefined) {
+        console.log('testing')
+    } else {
+        const { data } = await axios.get(`/api/users/${id}/cart`)
+        return data 
+    }
 })
 
 export const addToCart = createAsyncThunk('users/addToCart', async(newOrder) => {

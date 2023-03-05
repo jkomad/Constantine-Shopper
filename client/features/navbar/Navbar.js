@@ -59,7 +59,7 @@ const Navbar = () => {
             </div>
             {/* The navbar will show these links before you log in */}
             <div>
-            <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/${userId}/cart`}></Link>
+            <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/guest/cart`}></Link>
             <Link title='Sign In' className="fa fa-fw fa-sign-in" to="/login"></Link>
             <Link title='Sign Up' className="fa fa-fw fa-user-plus" to="/signup"></Link>
             </div>
