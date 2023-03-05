@@ -22,6 +22,8 @@ export const addToCart = createAsyncThunk('users/addToCart', async(newOrder) => 
     return data
 })
 
+//removeFromCart
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,

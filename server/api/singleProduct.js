@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const {
-  models: { Product },
+  models: { Product, Order },
 } = require("../db");
+const OrderItems = require("../db/models/OrderItems");
 module.exports = router;
 
 // GET /api/products/:id
@@ -41,6 +42,7 @@ router.put("/:id", async (req, res, next) => {
 // DELETE /api/products/:id
 router.delete("/:id", async (req, res, next) => {
   try {
+    const { product, orderId } = req.body
     const id = Number(req.params.id);
     const productToBeDeleted = await Product.findByPk(id);
 
@@ -48,11 +50,22 @@ router.delete("/:id", async (req, res, next) => {
       const error = new Error("That product does not exist");
       error.status = 404;
       throw error;
+    } else {
+      const orderItems = await OrderItems.findOne({
+        where: {
+          productId: productToBeDeleted.id
+        }
+      })
+      const order = await Order.findOne({
+        where: {
+          id: orderItems.orderId
+        }
+      })
+      order.total -= productToBeDeleted.price * orderItems.quantity
+      await order.save()
+      await productToBeDeleted.destroy();
+      res.send(productToBeDeleted);
     }
-
-    await productToBeDeleted.destroy();
-    res.send(productToBeDeleted);
-
   } catch (error) {
     next(error);
   }
