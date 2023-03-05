@@ -42,7 +42,6 @@ router.put("/:id", async (req, res, next) => {
 // DELETE /api/products/:id
 router.delete("/:id", async (req, res, next) => {
   try {
-    const { product, orderId } = req.body
     const id = Number(req.params.id);
     const productToBeDeleted = await Product.findByPk(id);
 
@@ -51,20 +50,27 @@ router.delete("/:id", async (req, res, next) => {
       error.status = 404;
       throw error;
     } else {
-      const orderItems = await OrderItems.findOne({
+      const orderItems = await OrderItems.findAll({
         where: {
           productId: productToBeDeleted.id
         }
       })
-      const order = await Order.findOne({
-        where: {
-          id: orderItems.orderId
+      if(orderItems.length === 0) {
+        await productToBeDeleted.destroy()
+        res.send(productToBeDeleted)
+      } else {
+        for (let i = 0; i < orderItems.length; i++) {
+          const order = await Order.findOne({
+            where: {
+              id: orderItems[i].orderId
+            }
+          })
+          order.total -= productToBeDeleted.price * orderItems[i].quantity
+          await order.save()
+          await productToBeDeleted.destroy();
         }
-      })
-      order.total -= productToBeDeleted.price * orderItems.quantity
-      await order.save()
-      await productToBeDeleted.destroy();
-      res.send(productToBeDeleted);
+        res.send(productToBeDeleted);
+      }
     }
   } catch (error) {
     next(error);

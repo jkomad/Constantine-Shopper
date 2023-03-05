@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 // import { deleteProductAsync } from "../singleProduct/singleProductSlice";
 import { deleteProduct, fetchAllProducts, selectProducts } from "./productsSlice";
 
-const DeleteProduct = ({ product }) => {
+const DeleteProduct = ({ product, orderId }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteProduct(product.id));
+    const productToDelete = {
+      product, 
+      orderId
+    }
+    dispatch(deleteProduct(productToDelete));
     dispatch(fetchAllProducts());
   };
 

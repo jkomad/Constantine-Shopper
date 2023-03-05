@@ -57,7 +57,7 @@ const Products = () => {
               <p className="margin2px italic">{product.description.charAt(0).toUpperCase()+product.description.slice(1)}</p>
               <button onClick={() => handleAddToCart(product.id)}>add to cart</button>
               {isAdmin ? (
-              <DeleteProduct className="deleteButton" product={product}>REMOVE PRODUCT</DeleteProduct>
+              <DeleteProduct className="deleteButton" product={product} orderId={cartInfo.id}>REMOVE PRODUCT</DeleteProduct>
             ) : (
               ""
             )}

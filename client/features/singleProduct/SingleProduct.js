@@ -42,12 +42,7 @@ const SingleProduct = () => {
   };
 
   const handleDelete = () => {
-    const productToDelete = {
-      id,
-      product,
-      orderId: cartInfo.id
-    }
-    dispatch(deleteProductAsync(productToDelete))
+    dispatch(deleteProductAsync(id))
       .then(navigate("/products"))
       .then(dispatch(fetchAllProducts()));
   };
