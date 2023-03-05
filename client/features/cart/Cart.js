@@ -45,8 +45,8 @@ const Cart = () => {
             <div className='productsBody'>
             {itemsToCheckout.map((item) => {
                 return (
-                    <div className='container'>
-                    <div key={item.product.id} className='productContainer'>
+                    <div key={item.product.id} className='container'>
+                    <div className='productContainer'>
                         <img src={item.product.imgUrl} className='productImg'/>
                         <div className='productInfo'>
                             <a>{`(${item.quantity})`} {item.product.name}</a>
