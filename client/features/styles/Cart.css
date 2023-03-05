@@ -2,10 +2,15 @@
     text-align: center;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .productsBody {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 .productContainer {

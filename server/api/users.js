@@ -92,28 +92,28 @@ router.get('/:id/cart', async (req, res, next) => {
 // POST /api/users/:id/cart/add
 router.post('/:id/cart/add', async(req, res, next) => {
   try {
-      // const { price, quantity, productId, orderId } = req.body
-      // const order = await Order.findOne({
-      //   where: {
-      //     id: orderId
-      //   }
-      // })
-
-      // order.addProduct(productId, {
-      //   through: {price: 0, quantity: 0}
-      // })
-      // const orderItems = order.getProducts()
-      // res.json(order)
     const { quantity, productId, orderId } = req.body
     const orderItem = await OrderItems.findOne({
       where: { productId, orderId }
     })
+    const product = await Product.findOne({
+      where: {
+        id: productId
+      }
+    })
+    const order = await Order.findOne({
+      where: {
+        id: orderId
+      }
+    })    
     if(orderItem) {
       OrderItems.increment(
-        'quantity', { by: 1, where: {
+        'quantity', { by: quantity, where: {
           productId: productId,
         }}
       )
+      order.total += product.price * quantity
+      await order.save()
       await orderItem[0].save()
     } else {
       const newOrderItem = await OrderItems.create({
@@ -121,8 +121,10 @@ router.post('/:id/cart/add', async(req, res, next) => {
         productId, 
         orderId
       })
-      res.json(newOrderItem)
-    }
+    order.total += product.price * quantity
+    await order.save()
+    res.json(newOrderItem)
+  }
   } catch (err) {
     console.error(err.message)
     next(err)

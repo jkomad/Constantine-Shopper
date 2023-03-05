@@ -26,25 +26,19 @@ const Cart = () => {
         for (let j = 0; j < products.length; j++) {
             if(i > order.length-1) break
             if(order[i].productId === products[j].id) {
-                itemsToCheckout.push(products[j])
+                itemsToCheckout.push({
+                    product: products[j], 
+                    quantity: order[i].quantity
+                })
                 i++
                 j=-1
                 continue
             }
         }
-        console.log(itemsToCheckout)
         return itemsToCheckout
     }
     const itemsToCheckout = checkout(orderItems)
-
-    const calculateTotal = (order) => {
-        const total = order.reduce((acc, cv) => {
-            return acc+cv.price
-        }, 0)
-        return total
-    }
-
-    const total = calculateTotal(itemsToCheckout)
+    console.log(itemsToCheckout)
 
     return (
         <div>
@@ -52,18 +46,24 @@ const Cart = () => {
             <div className='productsBody'>
             {itemsToCheckout.map((item) => {
                 return (
-                    <div key={item.id} className='productContainer'>
-                        <img src={item.imgUrl} className='productImg'/>
+                    <div className='container'>
+                    <div key={item.product.id} className='productContainer'>
+                        <img src={item.product.imgUrl} className='productImg'/>
                         <div className='productInfo'>
-                            <a>{item.name}</a>
-                            <p>{item.price}</p>
-                            <p>{item.description}</p>
+                            <a>{`(${item.quantity})`} {item.product.name}</a>
+                            <p>{item.product.price}</p>
+                            <p>{item.product.description}</p>
                         </div>
+                    </div>
+                    <div className='ui'>
+                        <button>-</button>
+                        <button>+</button>
+                    </div>
                     </div>
                 )
             })}
             </div>
-            <h1 className='total-price'>Total: ${total}.00</h1>
+            <h1 className='total-price'>Total: ${cartInfo.total}.00</h1>
         </div>
     )
 }

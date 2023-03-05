@@ -22,6 +22,7 @@ const SingleProduct = () => {
 
   const [showEditForm, setShowEditForm] = useState(false);
   const [addedItem, setAddedItem] = useState(false)
+  const [qty, setQty] = useState(1)
 
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
@@ -46,10 +47,17 @@ const SingleProduct = () => {
       .then(dispatch(fetchAllProducts()));
   };
 
-  const handleAddToCart = () => {
+  const handleChange = (evt) => {
+    setQty(evt.target.value)
+  }
+
+  const handleAddToCart = (qty) => {
+    if(qty <= 0) {
+      return 
+    }
     const newOrder = {
       id: user.id,
-      quantity: 1,
+      quantity: qty,
       productId: product.id,
       orderId: cartInfo.id, 
     }
@@ -71,7 +79,10 @@ const SingleProduct = () => {
       {showEditForm && (
         <EditProductForm product={product} onSubmit={handleEditSubmit} />
       )}
-      <button onClick={() => handleAddToCart()}>Add to cart</button>
+      <form onSubmit={() => handleAddToCart(qty)}>
+        <input type='number' onChange={handleChange} placeholder='Qty' defaultValue='1' min='1'></input>
+        <button type='submit'>Add to cart</button>
+      </form>
       <button onClick={() => handleDelete()}>Delete</button>
       </div>
       </div>):(
@@ -82,7 +93,10 @@ const SingleProduct = () => {
     <h1>{product.name}</h1>
     <h2>{product.price}</h2>
     <h3>{product.description}</h3>
-    <button onClick={() => handleAddToCart()}>Add to cart</button>
+    <form onSubmit={() => handleAddToCart(qty)}>
+      <input type='number' onChange={handleChange} placeholder='Qty' defaultValue='1' min='1'></input>
+      <button type='submit'>Add to cart</button>
+    </form>
     </div>
     </div>)}
     </div>
