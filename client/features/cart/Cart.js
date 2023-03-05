@@ -16,7 +16,7 @@ const Cart = () => {
     const dispatch = useDispatch()
     
     useEffect(() => {
-        dispatch(fetchCart(id))
+        dispatch(fetchCart(user.id))
         dispatch(fetchAllProducts())
     }, [dispatch, user])
     
