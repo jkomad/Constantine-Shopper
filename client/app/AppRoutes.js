@@ -14,6 +14,7 @@ import { fetchUsers } from "../features/users/usersSlice";
 import AddProduct from "../features/products/AddProduct";
 import Cart from "../features/cart/Cart";
 import GuestCart from "../features/guestCart/GuestCart";
+import Payment from "../features/cart/Payment";
 /**
  * COMPONENT
  */
@@ -41,7 +42,8 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<User userId={userId}/>} /> // update route for logged in users
-          <Route path="/users/:id/cart" element={<Cart user={user}/>} />
+          <Route path="/users/:id/cart" element={<Cart userId={userId}/>} />
+          <Route path='/users/:id/checkout' element={<Payment />} />
         </Routes>
       ) : (
         <Routes>

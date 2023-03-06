@@ -2,6 +2,31 @@ const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+const products = require('../mock_product_data')
+console.log(products[0].price * 100)
+const testTotal = products[0].price * 100
+
+app.post('/create-payment-intent', async (req, res) => {
+  const paymentIntent = await stripe.paymentIntents.create({
+    currency: 'USD',
+    amount: testTotal,
+    automatic_payment_methods: {
+      enabled: true,
+    }
+  })
+
+  res.send({clientSecret: paymentIntent.client_secret})
+});
+
+app.get('/config', (req, res) => {
+  res.send({
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
+  })
+})
+
+
 module.exports = app
 
 // logging middleware
@@ -13,6 +38,7 @@ app.use(express.json())
 // auth and api routes
 app.use('/auth', require('./auth'))
 app.use('/api', require('./api'))
+app.use('/create-payment-intent', require('./api'))
 
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
 
