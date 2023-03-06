@@ -13,6 +13,7 @@ import { me } from "./store";
 import { fetchUsers } from "../features/users/usersSlice";
 import AddProduct from "../features/products/AddProduct";
 import Cart from "../features/cart/Cart";
+import GuestCart from "../features/guestCart/GuestCart";
 /**
  * COMPONENT
  */
@@ -20,6 +21,7 @@ import Cart from "../features/cart/Cart";
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin)
+  const user = useSelector((state) => state.auth.me)
   const userId = useSelector((state) => state.auth.me.id); // get current user's id
   const dispatch = useDispatch();
 
@@ -39,7 +41,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<User userId={userId}/>} /> // update route for logged in users
-          <Route path="/users/:id/cart" element={<Cart userId={userId}/>} />
+          <Route path="/users/:id/cart" element={<Cart user={user}/>} />
         </Routes>
       ) : (
         <Routes>
@@ -61,6 +63,7 @@ const AppRoutes = () => {
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<User userId={userId} />} /> // pass userId prop to User component
           <Route path="/users/:id/cart" element={<Cart />} />
+          <Route path='/users/guest/cart' element={<GuestCart />} />
         </Routes>
       )}
     </div>

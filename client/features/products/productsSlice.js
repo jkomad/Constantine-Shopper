@@ -25,7 +25,6 @@ export const addProduct = createAsyncThunk(
         description: description,
         imgUrl: imgUrl
       })
-      console.log(data)
       return data
     } catch (err) {
       console.log(err)
@@ -50,14 +49,12 @@ const productsReducer = createSlice({
       return action.payload;
     });
     builder.addCase(addProduct.fulfilled, (state, action) => {
-      console.log(action.payload)
       state.push(action.payload);
     });
     builder.addCase(deleteProduct.fulfilled, (state, action) => {
       const newState = state.filter(
         (product) => product.id !== action.payload.id
       );
-      console.log(newState)
       return newState;
     });
   },

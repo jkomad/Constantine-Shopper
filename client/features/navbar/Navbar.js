@@ -2,15 +2,20 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store';
+import { deleteCartState, fetchCart, selectCart } from '../cart/cartSlice';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
   const userId = useSelector((state) => state.auth.me.id);
+  const cart = useSelector(selectCart)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const logoutAndRedirectHome = () => {
     dispatch(logout());
+    dispatch(fetchCart(userId))
+    dispatch(deleteCartState())
     navigate('/login');
   };
 
@@ -54,7 +59,7 @@ const Navbar = () => {
             </div>
             {/* The navbar will show these links before you log in */}
             <div>
-            <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/${userId}/cart`}></Link>
+            <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/guest/cart`}></Link>
             <Link title='Sign In' className="fa fa-fw fa-sign-in" to="/login"></Link>
             <Link title='Sign Up' className="fa fa-fw fa-user-plus" to="/signup"></Link>
             </div>
