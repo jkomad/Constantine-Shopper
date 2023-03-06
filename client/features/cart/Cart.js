@@ -3,14 +3,14 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchAllProducts, selectProducts } from '../products/productsSlice'
-import { selectCart, fetchCart } from './cartSlice'
+import { selectCart, fetchCart, removeFromCart, incrementItem } from './cartSlice'
 import { selectMe } from '../auth/authSlice'
 
 const Cart = () => {    
+    const { id } = useParams()
     const user = useSelector(selectMe)
     const products = useSelector(selectProducts)
     const cart = useSelector(selectCart)
-    const { id } = useParams()
     const { cartInfo, orderItems } = cart
     
     const dispatch = useDispatch()
@@ -19,6 +19,24 @@ const Cart = () => {
         dispatch(fetchCart(user.id))
         dispatch(fetchAllProducts())
     }, [dispatch, user])
+
+    const handleRemoveProduct = (item) => {
+        const { product } = item
+        const orderToRemove = {
+            id,
+            product
+        }
+        dispatch(removeFromCart(orderToRemove))
+    }
+
+    const handleIncrementItem = (item) => { 
+        const { product } = item
+        const itemToIncrement = {
+            id,
+            product
+        }
+        dispatch(incrementItem(itemToIncrement))
+    }
     
     const checkout = (order) => {
         const itemsToCheckout = []
@@ -37,6 +55,7 @@ const Cart = () => {
         }
         return itemsToCheckout
     }
+
     const itemsToCheckout = checkout(orderItems)
 
     return (
@@ -56,7 +75,8 @@ const Cart = () => {
                     </div>
                     <div className='ui'>
                         <button>-</button>
-                        <button>+</button>
+                        <button onClick={() => handleIncrementItem(item)}>+</button>
+                        <button onClick={() => handleRemoveProduct(item)}>Remove Product</button>
                     </div>
                     </div>
                 )

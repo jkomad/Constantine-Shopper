@@ -131,4 +131,76 @@ router.post('/:id/cart/add', async(req, res, next) => {
   }
 })
 
+// // PUT /api/users/:id/cart/increment
+// router.put('/:id/cart/increment', async(req, res, next) => {
+//   try {
+//     const { product } = req.body
+//     res.send(product)
+//     const { id } = req.params
+//     const order = Order.findOne({
+//       where: {
+//         userId: id
+//       }
+//     })
+//     const orderItem = OrderItems.findOne({
+//       where: {
+//         orderId: order.id,
+//         productId: product.id
+//       }
+//     })
+//     if(orderItem.quantity >= 1) {
+//       OrderItems.increment(
+//         'quantity', { by: 1, where: {
+//           productId: product.id
+//         }}
+//       )
+//       order.total += product.price 
+//       await order.save()
+//     }
+//     const orderItems = await OrderItems.findAll({
+//       where: {
+//         orderId: order.id
+//       }
+//     })
+//     res.json(orderItems) 
+//   } catch(err) {
+//     console.error(err.message)
+//     next(err)
+//   }
+// })
+
+// DELETE /api/users/:id/cart/remove
+router.delete('/:id/cart/increment', async(req, res, next) => {
+  try {
+    const { id } = req.params
+    const order = await Order.findOne({
+      where: {
+        userId: id
+      }
+    })
+    const orderItemToDelete = await OrderItems.findOne({
+      where: {
+        orderId: order.id,
+        productId: product.id
+      }
+    })
+    if(!orderItemToDelete) {
+      console.log('This item is not in your cart!')
+    } else {
+      order.total -= orderItemToDelete.quantity * product.price
+      await order.save()
+      await orderItemToDelete.destroy()
+      const orderItems = await OrderItems.findAll({
+        where: {
+          orderId: order.id
+        }
+      })
+      res.json(orderItems)    
+    }
+    } catch (err) {
+      console.error(err.message)
+      next(err)
+    }
+})
+
 module.exports = router
