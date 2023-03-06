@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchAllProducts, selectProducts } from "../products/productsSlice";
-import { selectCart, fetchCart } from "./cartSlice";
+import { selectCart, fetchCart, addToCart } from "./cartSlice";
 import { selectMe } from "../auth/authSlice";
 import Payment from "./Payment";
 import Modal from "./Modal";
@@ -22,6 +22,24 @@ const Cart = () => {
     dispatch(fetchCart(user.id));
     dispatch(fetchAllProducts());
   }, [dispatch, user]);
+
+  const handleQtyChange = (event, productId) => {
+    const newOrder = {
+        id: user.id,
+        quantity: 1,
+        productId,
+        orderId: cartInfo.id,
+      }
+    orderItems.forEach((cartItem) => {
+      if (cartItem.id === productId) {
+        cartItem.quantity = event.target.value;
+        newOrder.quantity = cartItem.quantity
+        console.log(newOrder.quantity)
+      }
+    });
+
+    dispatch(addToCart(newOrder)).then(dispatch(fetchCart(user.id)));
+  };
 
   const checkout = (order) => {
     const itemsToCheckout = [];
@@ -60,8 +78,12 @@ const Cart = () => {
                 </div>
               </div>
               <div className="ui">
-                <button>-</button>
-                <button>+</button>
+              <input
+                  type="number"
+                  min="1"
+                  value={item.quantity}
+                  onChange={(event) => handleQtyChange(event, item.product.id)}
+                />
               </div>
             </div>
           );
@@ -74,7 +96,7 @@ const Cart = () => {
         0
       ) : (
         <>
-          <button onClick={() => setIsOpen(true)}>PROCEED TO CHECKOUT</button>
+          <button onClick={() => setIsOpen(true)}>Show Payment Modal</button>
           {isOpen && <Modal setIsOpen={setIsOpen} />}
         </>
       )}
