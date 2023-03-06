@@ -28,7 +28,7 @@ export const addToCart = createAsyncThunk('users/addToCart', async(newOrder) => 
 export const removeFromCart = createAsyncThunk('users/removeFromCart', async(orderToRemove) => {
     const { id, product } = orderToRemove
     const { data } = await axios.delete(`/api/users/${id}/cart/remove`, {
-        data: { 
+        data: {
             product
         }
     })

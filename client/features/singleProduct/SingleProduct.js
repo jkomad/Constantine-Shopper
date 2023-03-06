@@ -63,7 +63,6 @@ const SingleProduct = () => {
     }
     dispatch(addToCart(newOrder))
     setAddedItem(true)
-    navigate(`/users/${user.id}/cart`)
   }
 
   return (

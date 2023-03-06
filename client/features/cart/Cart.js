@@ -69,7 +69,7 @@ const Cart = () => {
                         <img src={item.product.imgUrl} className='productImg'/>
                         <div className='productInfo'>
                             <a>{`(${item.quantity})`} {item.product.name}</a>
-                            <p>{item.product.price}</p>
+                            <p>${item.product.price}</p>
                             <p>{item.product.description}</p>
                         </div>
                     </div>

@@ -172,6 +172,7 @@ router.post('/:id/cart/add', async(req, res, next) => {
 // DELETE /api/users/:id/cart/remove
 router.delete('/:id/cart/increment', async(req, res, next) => {
   try {
+    const { product } = req.data
     const { id } = req.params
     const order = await Order.findOne({
       where: {
