@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { models: { User, Order, OrderItems }} = require('../db')
+const { resolveObjectURL } = require('buffer')
+const { models: { User, Order, OrderItems, Product }} = require('../db')
 
 // GET /api/users
 router.get('/', async (req, res, next) => {
@@ -71,14 +72,63 @@ router.get('/:id/cart', async (req, res, next) => {
     const order = await Order.findOne({
       where: {
         userId: user.id
-      },
-      include: [OrderItems]
+      }
     })
-    res.json(order)
+    const orderItems = await OrderItems.findAll({
+      where: {
+        orderId: order.id
+      }
+    })
+    const fullOrder = {
+      cartInfo: order,
+      orderItems
+    }
+    res.json(fullOrder)
   } catch (error){
     next(error)
   }
 })
 
+// POST /api/users/:id/cart/add
+router.post('/:id/cart/add', async(req, res, next) => {
+  try {
+    const { quantity, productId, orderId } = req.body
+    const orderItem = await OrderItems.findOne({
+      where: { productId, orderId }
+    })
+    const product = await Product.findOne({
+      where: {
+        id: productId
+      }
+    })
+    const order = await Order.findOne({
+      where: {
+        id: orderId
+      }
+    })    
+    if(orderItem) {
+      OrderItems.increment(
+        'quantity', { by: quantity, where: {
+          productId: productId,
+        }}
+      )
+      order.total += product.price * quantity
+      await order.save()
+      await orderItem[0].save()
+    } else {
+      const newOrderItem = await OrderItems.create({
+        quantity, 
+        productId, 
+        orderId
+      })
+    order.total += product.price * quantity
+    await order.save()
+    res.json(newOrderItem)
+  }
+  } catch (err) {
+    console.error(err.message)
+    next(err)
+  }
+})
 
 module.exports = router

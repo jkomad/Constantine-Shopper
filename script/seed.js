@@ -26,9 +26,6 @@ async function seed() {
   //   isFulfilled: false
   // })
 
-  const order = createdCarts[0]
-  await order.addProduct(createdProducts[0], { through: { quantity: 2 } })
-
   console.log(`seeded ${createdUsers.length} users`)
   console.log(`seeded ${createdProducts.length} products`)
   console.log(`seeded ${createdCarts.length} carts`)

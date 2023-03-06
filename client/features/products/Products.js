@@ -1,24 +1,47 @@
 import "../styles/Products.css";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts, selectProducts } from "./productsSlice";
 import AddProduct from "./AddProduct";
-import { Link, Routes, Route, useParams } from "react-router-dom";
+import { Link, Routes, Route, useParams, useNavigate } from "react-router-dom";
 import { me } from "../auth/authSlice";
 import { deleteProductAsync } from "../singleProduct/singleProductSlice";
 import DeleteProduct from "./DeleteProduct";
+import { fetchCart, addToCart, selectCart } from "../cart/cartSlice";
 
 const Products = () => {
   const products = useSelector(selectProducts);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
+  const user = useSelector((state) => state.auth.me)
+  const cart = useSelector(selectCart)
+  const { cartInfo, orderItems } = cart
+
+  const [addedItem, setAddedItem] = useState(false)
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
   useEffect(() => {
     dispatch(fetchAllProducts());
+    dispatch(fetchCart(user.id))
   }, [dispatch]);
 
-  console.log(me);
+  useEffect(() => {
+    dispatch(fetchCart(user.id))
+  }, [user, addedItem])
+
+  const handleAddToCart = (productId) => {
+    const newOrder = {
+      id: user.id,
+      quantity: 1,
+      productId,
+      orderId: cartInfo.id, 
+    }
+    dispatch(addToCart(newOrder))
+    setAddedItem(true)
+    navigate(`/users/${user.id}/cart`)
+  }
 
   return (
     <>
@@ -32,7 +55,7 @@ const Products = () => {
               <Link to={`/products/${product.id}`}>{product.name}</Link>
               <p className="margin2px">{`$${product.price}`}</p>
               <p className="margin2px italic">{product.description.charAt(0).toUpperCase()+product.description.slice(1)}</p>
-              <button>add to cart</button>
+              <button onClick={() => handleAddToCart(product.id)}>add to cart</button>
               {isAdmin ? (
               <DeleteProduct className="deleteButton" product={product}>REMOVE PRODUCT</DeleteProduct>
             ) : (

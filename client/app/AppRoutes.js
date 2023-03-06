@@ -22,6 +22,7 @@ import Payment from "../features/cart/Payment";
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin)
+  const user = useSelector((state) => state.auth.me)
   const userId = useSelector((state) => state.auth.me.id); // get current user's id
   const dispatch = useDispatch();
 
