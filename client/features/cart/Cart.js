@@ -1,12 +1,15 @@
 import "../styles/Cart.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchAllProducts, selectProducts } from "../products/productsSlice";
 import { selectCart, fetchCart, addToCart } from "./cartSlice";
 import { selectMe } from "../auth/authSlice";
+import Payment from "./Payment";
+import Modal from "./Modal";
 
 const Cart = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const user = useSelector(selectMe);
   const products = useSelector(selectProducts);
   const cart = useSelector(selectCart);
@@ -19,14 +22,13 @@ const Cart = () => {
     dispatch(fetchCart(user.id));
     dispatch(fetchAllProducts());
   }, [dispatch, user]);
-  
 
   const handleQtyChange = (event, productId) => {
     const newOrder = {
         id: user.id,
         quantity: 1,
         productId,
-        orderId: cartInfo.id, 
+        orderId: cartInfo.id,
       }
     orderItems.forEach((cartItem) => {
       if (cartItem.id === productId) {
@@ -54,7 +56,6 @@ const Cart = () => {
         continue;
       }
     }
-    console.log(itemsToCheckout)
     return itemsToCheckout;
   };
   const itemsToCheckout = checkout(orderItems);
@@ -77,7 +78,7 @@ const Cart = () => {
                 </div>
               </div>
               <div className="ui">
-                <input
+              <input
                   type="number"
                   min="1"
                   value={item.quantity}
@@ -91,6 +92,14 @@ const Cart = () => {
       <h1 className="total-price">
         Total: ${!cartInfo.total ? 0 : cartInfo.total}
       </h1>
+      {!cartInfo.total ? (
+        0
+      ) : (
+        <>
+          <button onClick={() => setIsOpen(true)}>Show Payment Modal</button>
+          {isOpen && <Modal setIsOpen={setIsOpen} />}
+        </>
+      )}
     </div>
   );
 };
