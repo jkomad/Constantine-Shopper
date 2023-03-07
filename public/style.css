@@ -26,12 +26,15 @@ form div {
 
 .containMe{
   margin: 0 200px;
-  /* text-align: center; */
 }
 .containMe p{
   text-align: center;
 }
-
+ @media only screen and (max-width: 600px) {
+  .containMe{
+    margin: 0;
+  }
+} 
 .Login{
   margin-top: 80px;
   display: flex;
@@ -60,11 +63,7 @@ form div {
   border-right:2px solid rgb(18, 61, 41);
 }
 
-/* @media only screen and (max-width: 600px) {
-  .Navbar h1{
-    font-size: 0%;
-  }
-}  */
+
 /* Navbar and User Forms End */
 /* Exit Button */
 
