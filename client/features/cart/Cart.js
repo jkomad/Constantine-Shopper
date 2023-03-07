@@ -8,7 +8,7 @@ import { selectMe } from "../auth/authSlice";
 import Payment from "./Payment";
 import Modal from "./Modal";
 
-const Cart = () => {    
+const Cart = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [productRemoved, setProductRemoved] = useState(false)
     const [edited, setEdited] = useState(false)
@@ -17,9 +17,9 @@ const Cart = () => {
     const products = useSelector(selectProducts)
     const cart = useSelector(selectCart)
     const { cartInfo, orderItems } = cart
-    
+
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         dispatch(fetchCart(user.id))
         dispatch(fetchAllProducts())
@@ -53,7 +53,7 @@ const Cart = () => {
         setProductRemoved(true)
         dispatch(removeFromCart(orderToRemove))
     }
-    
+
     const checkout = (order) => {
         const itemsToCheckout = []
         let i = 0
@@ -61,7 +61,7 @@ const Cart = () => {
             if(i > order.length-1) break
             if(order[i].productId === products[j].id) {
                 itemsToCheckout.push({
-                    product: products[j], 
+                    product: products[j],
                     quantity: order[i].quantity
                 })
                 i++
@@ -74,8 +74,17 @@ const Cart = () => {
     const itemsToCheckout = checkout(orderItems)
 
   return (
-    <div>
-      <h1 className="cart-header">{user.username}'s Cart</h1>
+    <div className="cartMain">
+      <h1 className="cart-header">{user.username}'s Cart:
+      {!cartInfo.total ?
+        <h1 className="total-price">Your Cart is Empty!</h1>
+        :
+        <>
+        <h1 className="total-price">Total: ${cartInfo.total}.00</h1>
+        <button onClick={() => setIsOpen(true)}>PROCEED TO CHECKOUT</button>
+          {isOpen && <Modal setIsOpen={setIsOpen} />}
+        </>
+        }</h1>
       <div className="cartBody">
         {itemsToCheckout.map((item) => {
           return (
@@ -102,15 +111,6 @@ const Cart = () => {
           );
         })}
       </div>
-        {!cartInfo.total ?  
-        <h1 className="total-price">Your Cart is Empty!</h1> 
-        :
-        <>
-        <h1 className="total-price">Total: ${cartInfo.total}</h1>
-        <button onClick={() => setIsOpen(true)}>PROCEED TO CHECKOUT</button>
-          {isOpen && <Modal setIsOpen={setIsOpen} />}
-        </>
-        }
     </div>
   );
 };
