@@ -6,10 +6,12 @@
 
 .productContainer{
   display: flex;
-  justify-content: space-between;
-  border: solid 1px black;
+  padding: 10px;
+  justify-content: right;
+  border-radius: 5px;
   width: 400px;
   margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 }
 
 .productImg{
@@ -22,10 +24,9 @@
 .productInfo{
   display: flex;
   flex-direction: column;
-  text-align: end;
-  justify-content: flex-start;
+  text-align: right;
+  justify-content: right;
   padding: 15px;
-  border: solid 1px lightgrey;
   margin: 5px;
 }
 
@@ -38,6 +39,6 @@
 }
 
 .deleteButton {
-  background-color: rgb(173, 173, 173);
+  /* background-color: rgb(173, 173, 173); */
 }
 

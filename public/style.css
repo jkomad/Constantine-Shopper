@@ -1,6 +1,9 @@
 body {
-  font-family: sans-serif;
-  padding-top: 80px;
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -21,20 +24,14 @@ form div {
   display: inline-block;
 }
 
-/* Navbar and User Forms */
-.Navbar{
-  position: absolute;
-  width: 100%;
-  display: flex;
-  left: 0px;
-  top: 0px;
-  background-color: rgb(47, 160, 108);
-  justify-content: space-between;
-  align-items: center;
+.containMe{
+  margin: 0 200px;
+  /* text-align: center; */
 }
-.Navbar h1{
-  color: azure;
+.containMe p{
+  text-align: center;
 }
+
 .Login{
   margin-top: 80px;
   display: flex;
@@ -45,7 +42,7 @@ form div {
 .Login input{
   background-color: darkgrey;
 }
-.Login button{
+.Login button, .productsBody button{
   font-weight:bold;
   background-color: darkgrey;
   box-shadow: 2px 2px 2px black;
@@ -55,7 +52,7 @@ form div {
   border-bottom:3px solid rgb(71, 71, 71);
   border-right:3px solid rgb(71, 71, 71);
 }
-.Login button:hover{
+.Login button:hover, .productsBody button:hover{
   background-color: rgb(47, 160, 108);
   color: azure;
   box-shadow: 1px 1px 1px rgb(100, 100, 100);
@@ -63,15 +60,11 @@ form div {
   border-right:2px solid rgb(18, 61, 41);
 }
 
-.fa{
-  font-size: 20px;
-  color:azure;
-}
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .Navbar h1{
     font-size: 0%;
   }
-}
+}  */
 /* Navbar and User Forms End */
 /* Exit Button */
 

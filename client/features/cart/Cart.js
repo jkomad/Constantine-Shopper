@@ -1,10 +1,10 @@
-import '../styles/Cart.css'
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { fetchAllProducts, selectProducts } from '../products/productsSlice'
-import { selectCart, fetchCart, removeFromCart, incrementItem } from './cartSlice'
-import { selectMe } from '../auth/authSlice'
+import "../styles/Cart.css";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { fetchAllProducts, selectProducts } from "../products/productsSlice";
+import { selectCart, fetchCart, addToCart, removeFromCart, incrementItem } from "./cartSlice";
+import { selectMe } from "../auth/authSlice";
 import Payment from "./Payment";
 import Modal from "./Modal";
 
@@ -66,44 +66,50 @@ const Cart = () => {
         }
         return itemsToCheckout
     }
-
     const itemsToCheckout = checkout(orderItems)
 
-    return (
-        <div>
-            <h1 className='cart-header'>{user.username}'s Cart</h1>
-            <div className='productsBody'>
-            {itemsToCheckout.map((item) => {
-                return (
-                    <div key={item.product.id} className='container'>
-                    <div className='productContainer'>
-                        <img src={item.product.imgUrl} className='productImg'/>
-                        <div className='productInfo'>
-                            <a>{`(${item.quantity})`} {item.product.name}</a>
-                            <p>${item.product.price}</p>
-                            <p>{item.product.description}</p>
-                        </div>
-                    </div>
-                    <div className='ui'>
-                        <button>-</button>
-                        <button onClick={() => handleIncrementItem(item)}>+</button>
-                        <button onClick={() => handleRemoveProduct(item)}>Remove Product</button>
-                    </div>
-                    </div>
-                )
-            })}
+  return (
+    <div>
+      <h1 className="cart-header">{user.username}'s Cart</h1>
+      <div className="cartBody">
+        {itemsToCheckout.map((item) => {
+          return (
+            <div key={item.product.id} className="container">
+              <div className="cartContainer">
+                <img src={item.product.imgUrl} className="productImg" />
+                <div className="cartInfo">
+                  <a>
+                    {`(${item.quantity})`}{item.product.name}
+                  </a>
+                  <p>{`Price: $${item.product.price}.00`}</p>
+                  {/* <p>{item.product.description}</p> */}
+                </div>
+              </div>
+              <div className="ui">
+              <input
+                  type="number"
+                  min="1"
+                  value={item.quantity}
+                  onChange={(event) => handleQtyChange(event, item.product.id)}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
-      {!cartInfo.total ? 
-      <h1 className="total-price">Cart is Empty</h1>
-      :
-      <>
-      <h1 className="total-price">Total: ${cartInfo.total}</h1>
-          <button onClick={() => setIsOpen(true)}>Show Payment Modal</button>
+      <h1 className="total-price">
+        Total: ${!cartInfo.total ? 0 : cartInfo.total}
+      </h1>
+      {!cartInfo.total ? (
+        0
+      ) : (
+        <>
+          <button onClick={() => setIsOpen(true)}>PROCEED TO CHECKOUT</button>
           {isOpen && <Modal setIsOpen={setIsOpen} />}
-      </>
-      }
+        </>
+      )}
     </div>
   );
 };
 
-export default Cart
+export default Cart;
