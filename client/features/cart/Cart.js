@@ -92,6 +92,7 @@ const Cart = () => {
               <div className="ui">
               <input
                   type="number"
+                  min='1'
                   value={item.quantity}
                   onChange={(event) => handleEdit(event, item.product.id)}
                 />

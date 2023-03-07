@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { isFulfilled } = require('@reduxjs/toolkit')
 const { resolveObjectURL } = require('buffer')
 const { models: { User, Order, OrderItems, Product }} = require('../db')
 
@@ -104,7 +105,8 @@ router.post('/:id/cart/add', async(req, res, next) => {
     })
     const order = await Order.findOne({
       where: {
-        id: orderId
+        id: orderId,
+        isFulfilled: false
       }
     })
     if(orderItem) {
@@ -139,7 +141,8 @@ router.put('/:id/cart/editCart', async(req, res, next) => {
     const { id } = req.params
     const order = await Order.findOne({
       where: {
-        userId: id
+        userId: id,
+        isFulfilled: false
       }
     })
     const product = await Product.findByPk(productId)
@@ -185,7 +188,8 @@ router.put('/:id/cart/remove', async(req, res, next) => {
     const { id } = req.params
     const order = await Order.findOne({
       where: {
-        userId: id
+        userId: id,
+        isFulfilled: false
       }
     })
     const orderItemToDelete = await OrderItems.findOne({
@@ -234,7 +238,7 @@ router.put('/:id/completeOrder', async(req, res, next) => {
 
     const orderItems = await OrderItems.findAll({
       where: {
-        orderId: order.id
+        orderId: newOrder.id
       }
     })
 
