@@ -10,7 +10,7 @@ const messages = [
   "SIKE!",
   "No sales for you DUMMY!",
   "Do you really want diabetes?",
-  "How about some high cholesterole?",
+  "How about some high cholesterol?",
   "This stuff WILL KILL YOU!",
 ];
 export default function Promotions() {

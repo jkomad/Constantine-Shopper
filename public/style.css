@@ -4,6 +4,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: 92px; 
 }
 
 a {
@@ -32,7 +33,7 @@ form div {
 }
  @media only screen and (max-width: 600px) {
   .containMe{
-    margin: 0 2px;
+    margin: 0 20px;
   }
 } 
 .Login{
