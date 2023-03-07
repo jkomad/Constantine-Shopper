@@ -1,5 +1,5 @@
 import '../styles/Cart.css'
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchAllProducts, selectProducts } from '../products/productsSlice'
