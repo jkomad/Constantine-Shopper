@@ -6,10 +6,18 @@ import { textPopUpTop, textPopDown } from "../../animation";
 
 export const AppbarContainer = styled(Box)(() => ({    
     display: 'flex',
-    marginTop: 4,
+    marginTop: 0,
+    marginBotton: "20px",
     justifyContent: 'center',
-  alignItems: 'center',
-    padding: '2px 8px'
+    alignItems: 'center',
+    padding: '2px 8px',
+    overflow: "hidden",
+    backgroundColor: '#fff',
+    position: 'fixed', 
+    top: 0, 
+    width: "100%",
+    boxShadow: "0px 0.2px 0px #b3dac2",
+    zIndex: 1
 }));
 
 export const AppbarHeader = styled(Typography)(() => ({
