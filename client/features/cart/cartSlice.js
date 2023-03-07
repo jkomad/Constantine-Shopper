@@ -34,14 +34,7 @@ export const removeFromCart = createAsyncThunk('users/removeFromCart', async(ord
     return data
 })
 
-// export const incrementItem = createAsyncThunk('cart/incrementItem', async(itemToIncrement) => {
-//     const { id, product } = itemToIncrement
-//     const { data } = await axios.put(`/api/users/${id}/cart/increment`, {
-//         product
-//     })
-//     console.log(data)
-//     return data
-// })
+export const editCart = createAsyncThunk('users/editCart', async())
 
 const cartSlice = createSlice({
     name: 'cart',

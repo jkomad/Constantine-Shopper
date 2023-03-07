@@ -43,7 +43,6 @@ const Cart = () => {
         if (cartItem.id === productId) {
             cartItem.quantity = event.target.value;
             newOrder.quantity = cartItem.quantity
-            console.log(newOrder.quantity)
         }
         });
         setIncremented(true)
