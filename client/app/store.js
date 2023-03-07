@@ -4,9 +4,9 @@ import authReducer from '../features/auth/authSlice';
 import productsReducer from '../features/products/productsSlice';
 import singleProductReducer from '../features/singleProduct/singleProductSlice';
 import usersReducer from '../features/users/usersSlice';
-import singleUserReducer from '../features/user/userSlice'
-import cartReducer from '../features/cart/cartSlice'
-
+import singleUserReducer from '../features/user/userSlice';
+import cartReducer from '../features/cart/cartSlice';
+import uiReducer from '../features/drawer/drawerSlice';
 
 const store = configureStore({
   reducer: {
@@ -15,7 +15,8 @@ const store = configureStore({
     singleProduct: singleProductReducer,
     users: usersReducer,
     user: singleUserReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    ui: uiReducer,
     // orders: ordersReducer,
     // singleOrder: singleOrderReducer
   },
@@ -24,3 +25,4 @@ const store = configureStore({
 
 export default store;
 export * from '../features/auth/authSlice';
+export * from '../features/drawer/drawerSlice';
