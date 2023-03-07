@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchAllProducts, selectProducts } from "../products/productsSlice";
-import { selectCart, fetchCart, addToCart, removeFromCart, incrementItem } from "./cartSlice";
+import { selectCart, fetchCart, addToCart, removeFromCart} from "./cartSlice";
 import { selectMe } from "../auth/authSlice";
 import Payment from "./Payment";
 import Modal from "./Modal";
@@ -39,15 +39,6 @@ const Cart = () => {
         setProductRemoved(true)
         dispatch(removeFromCart(orderToRemove))
     }
-
-    // const handleIncrementItem = (item) => { 
-    //     const { product } = item
-    //     const itemToIncrement = {
-    //         id,
-    //         product
-    //     }
-    //     dispatch(incrementItem(itemToIncrement))
-    // }
     
     const checkout = (order) => {
         const itemsToCheckout = []
@@ -82,7 +73,6 @@ const Cart = () => {
                     {`(${item.quantity})`}{item.product.name}
                   </a>
                   <p>{`Price: $${item.product.price}.00`}</p>
-                  {/* <p>{item.product.description}</p> */}
                 </div>
               </div>
               <div className="ui">
@@ -92,23 +82,21 @@ const Cart = () => {
                   value={item.quantity}
                   onChange={(event) => handleQtyChange(event, item.product.id)}
                 />
-                <button onClick={handleRemoveProduct}>Remove Product</button>
+                <button onClick={() => handleRemoveProduct(item.product)}>Remove Product</button>
               </div>
             </div>
           );
         })}
       </div>
-      <h1 className="total-price">
-        Total: ${!cartInfo.total ? 0 : cartInfo.total}
-      </h1>
-      {!cartInfo.total ? (
-        0
-      ) : (
+        {!cartInfo.total ?  
+        <h1 className="total-price">Your Cart is Empty!</h1> 
+        :
         <>
-          <button onClick={() => setIsOpen(true)}>PROCEED TO CHECKOUT</button>
+        <h1 className="total-price">Total: ${cartInfo.total}</h1>
+        <button onClick={() => setIsOpen(true)}>PROCEED TO CHECKOUT</button>
           {isOpen && <Modal setIsOpen={setIsOpen} />}
         </>
-      )}
+        }
     </div>
   );
 };
