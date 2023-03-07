@@ -169,10 +169,10 @@ router.post('/:id/cart/add', async(req, res, next) => {
 //   }
 // })
 
-// DELETE /api/users/:id/cart/remove
-router.delete('/:id/cart/increment', async(req, res, next) => {
+// PUT /api/users/:id/cart/remove
+router.put('/:id/cart/remove', async(req, res, next) => {
   try {
-    const { product } = req.data
+    const { product } = req.body
     const { id } = req.params
     const order = await Order.findOne({
       where: {

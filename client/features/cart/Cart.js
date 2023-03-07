@@ -11,6 +11,7 @@ import Modal from "./Modal";
 
 const Cart = () => {    
     const [isOpen, setIsOpen] = useState(false);
+    const [productRemoved, setProductRemoved] = useState(false)
     const { id } = useParams()
     const user = useSelector(selectMe)
     const products = useSelector(selectProducts)
@@ -24,12 +25,18 @@ const Cart = () => {
         dispatch(fetchAllProducts())
     }, [dispatch, user])
 
+    useEffect(() => {
+        dispatch(fetchCart(user.id))
+        setProductRemoved(false)
+    }, [productRemoved])
+
     const handleRemoveProduct = (item) => {
         const { product } = item
         const orderToRemove = {
             id,
             product
         }
+        setProductRemoved(true)
         dispatch(removeFromCart(orderToRemove))
     }
 
