@@ -1,3 +1,15 @@
+.cartMain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+}
+
+.cartMain > .cart-header > button {
+    height: 40px;
+    width: 200px;
+}
+
 .cart-header {
     text-align: center;
 }
@@ -42,17 +54,20 @@
 
 .total-price {
     text-align: center;
+    font-size: 20px;
+    font-weight: 200;
+    margin: 0;
 }
 
 .darkBG {
     background-color: rgba(0, 0, 0, 0.2);
     width: 100vw;
-    height: 100vh;
-    z-index: 0;
+    height: 100%;
+    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: fixed;
   }
 
   .centered {
@@ -63,6 +78,8 @@
   }
 
   .whiteBackground {
+    margin-top: 95px;
+    margin-left: 50px;
     background-color: white;
     width: 400px;
     padding: 15px;
