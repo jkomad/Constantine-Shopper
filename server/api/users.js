@@ -135,7 +135,6 @@ router.post('/:id/cart/add', async(req, res, next) => {
 // router.put('/:id/cart/increment', async(req, res, next) => {
 //   try {
 //     const { product } = req.body
-//     res.send(product)
 //     const { id } = req.params
 //     const order = Order.findOne({
 //       where: {
