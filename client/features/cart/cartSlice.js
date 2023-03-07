@@ -30,11 +30,19 @@ export const removeFromCart = createAsyncThunk('users/removeFromCart', async(ord
     const { data } = await axios.put(`/api/users/${id}/cart/remove`, {
         product
     })
-    console.log(data)
     return data
 })
 
-export const editCart = createAsyncThunk('users/editCart', async())
+export const editCart = createAsyncThunk('users/editCart', async(orderToEdit) => {
+    const { id, quantity, productId, orderId } = orderToEdit
+    const { data } = await axios.put(`/api/users/${id}/cart/editCart`, {
+        quantity, 
+        productId,
+        orderId
+    })
+    console.log(data)
+    return data
+})
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -55,6 +63,10 @@ const cartSlice = createSlice({
         }),
         builder.addCase(removeFromCart.fulfilled, (state, action) => {
             state.orderItems = action.payload
+            return state
+        }),
+        builder.addCase(editCart.fulfilled, (state, action) => {
+            state.cartInfo = action.payload
             return state
         })
     }
