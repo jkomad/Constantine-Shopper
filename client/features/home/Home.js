@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Banner from '../banner';
+import Promotions from '../promotions';
 
 /**
  * COMPONENT
@@ -8,7 +10,10 @@ const Home = (props) => {
   const username = useSelector((state) => state.auth.me.username);
 
   return (
-    <div className="containMe">
+    <div>
+      <Banner />
+      <Promotions />
+      <div className="containMe">
       <h3> Oh Aiiit, {username} have you heard of much Irish folklore? When you were
       wee lad growing up in Ireland, and you looked out and saw the green grass and
       blue sky; did they ever teach you any old songs from the old days? Well I am
@@ -47,6 +52,7 @@ const Home = (props) => {
       <p>The candyman will sourpatch you fist to knock clean to the floor...</p>
       <p>I'll pumpkin crumb cream crunch punch his powedered doughnut head</p>
       <p>until the juniper jelly belly jam comes tumble bumble squeezing out of his neck</p>
+      </div>
     </div>
   );
 };
