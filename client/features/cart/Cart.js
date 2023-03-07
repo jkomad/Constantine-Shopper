@@ -81,10 +81,18 @@ const Cart = () => {
                     </div>
                 )
             })}
-            </div>
-            <h1 className='total-price'>Total: ${!cartInfo.total ? 0 : cartInfo.total}</h1>
-        </div>
-    )
-}
+      </div>
+      {!cartInfo.total ? 
+      <h1 className="total-price">Cart is Empty</h1>
+      :
+      <>
+      <h1 className="total-price">Total: ${cartInfo.total}</h1>
+          <button onClick={() => setIsOpen(true)}>Show Payment Modal</button>
+          {isOpen && <Modal setIsOpen={setIsOpen} />}
+      </>
+      }
+    </div>
+  );
+};
 
 export default Cart
