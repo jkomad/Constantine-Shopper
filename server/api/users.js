@@ -105,7 +105,7 @@ router.post('/:id/cart/add', async(req, res, next) => {
       where: {
         id: orderId
       }
-    })    
+    })
     if(orderItem) {
       OrderItems.increment(
         'quantity', { by: quantity, where: {
@@ -117,8 +117,8 @@ router.post('/:id/cart/add', async(req, res, next) => {
       await orderItem[0].save()
     } else {
       const newOrderItem = await OrderItems.create({
-        quantity, 
-        productId, 
+        quantity,
+        productId,
         orderId
       })
     order.total += product.price * quantity
@@ -153,7 +153,7 @@ router.post('/:id/cart/add', async(req, res, next) => {
 //           productId: product.id
 //         }}
 //       )
-//       order.total += product.price 
+//       order.total += product.price
 //       await order.save()
 //     }
 //     const orderItems = await OrderItems.findAll({
@@ -161,7 +161,7 @@ router.post('/:id/cart/add', async(req, res, next) => {
 //         orderId: order.id
 //       }
 //     })
-//     res.json(orderItems) 
+//     res.json(orderItems)
 //   } catch(err) {
 //     console.error(err.message)
 //     next(err)
@@ -195,7 +195,7 @@ router.put('/:id/cart/remove', async(req, res, next) => {
           orderId: order.id
         }
       })
-      res.json(orderItems)    
+      res.json(orderItems)
     }
     } catch (err) {
       console.error(err.message)

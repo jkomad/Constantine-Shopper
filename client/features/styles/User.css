@@ -12,7 +12,7 @@
     background-color: rgb(79, 137, 110);
     border-radius: 30px;
     padding: 10px;
-    
+
 }
 
 .user-pic {
@@ -111,4 +111,9 @@ button {
 .delete-button:hover {
     background-color: crimson;
     transition: 0.3s
+}
+
+.orderContainer {
+    display: flex;
+    flex-direction: row;
 }
