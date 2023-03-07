@@ -5,9 +5,10 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
   const elements = useElements();
+  // console.log(order)
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -16,7 +17,7 @@ const CheckoutForm = () => {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      return console.log(isProcessing);
+      return isProcessing;
     }
 
     setIsProcessing(true);

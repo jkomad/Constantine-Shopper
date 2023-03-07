@@ -7,6 +7,7 @@ import usersReducer from '../features/users/usersSlice';
 import singleUserReducer from '../features/user/userSlice';
 import cartReducer from '../features/cart/cartSlice';
 import uiReducer from '../features/drawer/drawerSlice';
+import orderHistoryReducer from '../features/orderHistory/orderHistorySlice'
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     user: singleUserReducer,
     cart: cartReducer,
     ui: uiReducer,
+    orderHistory: orderHistoryReducer
     // orders: ordersReducer,
     // singleOrder: singleOrderReducer
   },

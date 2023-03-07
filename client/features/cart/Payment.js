@@ -7,12 +7,16 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, selectCart } from "./cartSlice";
 import { selectMe } from "../auth/authSlice";
+import { fetchOrderHistory, selectOrderHistory } from "../orderHistory/orderHistorySlice";
+import { useParams } from "react-router-dom";
 
 const Payment = () => {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  const order = useSelector(selectOrderHistory)
   const user = useSelector(selectMe);
   const dispatch = useDispatch()
+  const {id} = useParams()
 
   const cart = useSelector(selectCart);
   const { cartInfo } = cart;
@@ -20,7 +24,8 @@ const Payment = () => {
   let total = cartInfo.total * 100
 
   useEffect(()=>{
-    dispatch(fetchCart(user.id))
+    dispatch(fetchCart(user.id));
+    dispatch(fetchOrderHistory(id));
   }, [])
 
   useEffect(() => {
@@ -51,7 +56,7 @@ const Payment = () => {
     <>
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm />
+          <CheckoutForm order={order} />
         </Elements>
       )}
     </>

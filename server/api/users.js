@@ -94,7 +94,7 @@ router.post('/:id/cart/add', async(req, res, next) => {
   try {
     const { quantity, productId, orderId } = req.body
     const orderItem = await OrderItems.findOne({
-      where: { productId, orderId } 
+      where: { productId, orderId }
     })
     const product = await Product.findOne({
       where: {
@@ -105,7 +105,7 @@ router.post('/:id/cart/add', async(req, res, next) => {
       where: {
         id: orderId
       }
-    })    
+    })
     if(orderItem) {
       OrderItems.increment(
         'quantity', { by: quantity, where: {
@@ -118,8 +118,8 @@ router.post('/:id/cart/add', async(req, res, next) => {
       await orderItem.save()
     } else {
       const newOrderItem = await OrderItems.create({
-        quantity, 
-        productId, 
+        quantity,
+        productId,
         orderId
       })
     order.total += product.price * quantity
@@ -131,10 +131,9 @@ router.post('/:id/cart/add', async(req, res, next) => {
     next(err)
   }
 })
-
 // // PUT /api/users/:id/cart/editCart
 router.put('/:id/cart/editCart', async(req, res, next) => {
-  try { 
+  try {
     const { quantity, productId, orderId } = req.body
     const { id } = req.params
     const order = await Order.findOne({
@@ -169,7 +168,7 @@ router.put('/:id/cart/editCart', async(req, res, next) => {
       )
       order.total += product.price
       await order.save()
-      await orderItem.save()    
+      await orderItem.save()
     }
     res.json(order)
   } catch (err) {
@@ -205,7 +204,7 @@ router.put('/:id/cart/remove', async(req, res, next) => {
           orderId: order.id
         }
       })
-      res.json(orderItems)    
+      res.json(orderItems)
     }
     } catch (err) {
       console.error(err.message)
@@ -214,3 +213,4 @@ router.put('/:id/cart/remove', async(req, res, next) => {
 })
 
 module.exports = router
+
