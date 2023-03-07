@@ -63,8 +63,8 @@ export const BannerShopButton = styled(Button, {
   // We are specifying here how the styleOverrides are being applied based on props
   overridesResolver: (props, styles) => [
     styles.root,
-    props.color === "primary" && Colors.primary,
-    props.color === "secondary" && Colors.secondary,
+    props.color === "primary" && styles.primary,
+    props.color === "secondary" && styles.secondary,
   ],
 })(({ theme }) => ({
   padding: "20px 0px",
