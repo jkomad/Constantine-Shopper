@@ -2,7 +2,7 @@ import { IconButton, List, Typography } from "@mui/material";
 import {styled} from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Colors, DrawerWidth } from "../theme";
-import { textPopUpTop } from "../../animation";
+import { textPopUpTop, textPopDown } from "../../animation";
 
 export const AppbarContainer = styled(Box)(() => ({    
     display: 'flex',
@@ -16,10 +16,13 @@ export const AppbarHeader = styled(Typography)(() => ({
   padding: "4px",
   flexGrow: 1,
   fontSize: "4em",
-  fontFamily: '"Montez", "cursive"',
+  fontFamily: 'sans-serif',
   color: Colors.secondary,
   "&:hover": {
     animation: `${textPopUpTop} 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both`,
+  },
+  "&:not(:hover)": {
+    animation: `${textPopDown} 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both`,
   },
   textDecoration: "none",
 }));
