@@ -30,6 +30,7 @@ export const removeFromCart = createAsyncThunk('users/removeFromCart', async(ord
     const { data } = await axios.put(`/api/users/${id}/cart/remove`, {
         product
     })
+    console.log(data)
     return data
 })
 
@@ -63,10 +64,6 @@ const cartSlice = createSlice({
             state.orderItems = action.payload
             return state
         })
-        // builder.addCase(incrementItem.fulfilled, (state, action) => {
-        //     state.orderItems = action.payload
-        //     return state
-        // })
     }
 })
 

@@ -12,6 +12,7 @@ import Modal from "./Modal";
 const Cart = () => {    
     const [isOpen, setIsOpen] = useState(false);
     const [productRemoved, setProductRemoved] = useState(false)
+    const [incremented, setIncremented] = useState(false)
     const { id } = useParams()
     const user = useSelector(selectMe)
     const products = useSelector(selectProducts)
@@ -28,7 +29,26 @@ const Cart = () => {
     useEffect(() => {
         dispatch(fetchCart(user.id))
         setProductRemoved(false)
-    }, [productRemoved])
+        setIncremented(false)
+    }, [incremented, productRemoved])
+
+    const handleQtyChange = (event, productId) => {
+        const newOrder = {
+            id: user.id,
+            quantity: 1,
+            productId,
+            orderId: cartInfo.id,
+        }
+        orderItems.forEach((cartItem) => {
+        if (cartItem.id === productId) {
+            cartItem.quantity = event.target.value;
+            newOrder.quantity = cartItem.quantity
+            console.log(newOrder.quantity)
+        }
+        });
+        setIncremented(true)
+        dispatch(addToCart(newOrder)).then(dispatch(fetchCart(user.id)));
+    };
 
     const handleRemoveProduct = (item) => {
         const { product } = item
@@ -82,7 +102,7 @@ const Cart = () => {
                   value={item.quantity}
                   onChange={(event) => handleQtyChange(event, item.product.id)}
                 />
-                <button onClick={() => handleRemoveProduct(item.product)}>Remove Product</button>
+                <button onClick={() => handleRemoveProduct(item)}>Remove Product</button>
               </div>
             </div>
           );
