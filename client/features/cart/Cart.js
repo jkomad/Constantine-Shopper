@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { fetchAllProducts, selectProducts } from '../products/productsSlice'
 import { selectCart, fetchCart, removeFromCart, incrementItem } from './cartSlice'
 import { selectMe } from '../auth/authSlice'
+import { Modal } from '@mui/material'
 
 const Cart = () => {    
     const { id } = useParams()
