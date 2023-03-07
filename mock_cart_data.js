@@ -2,7 +2,7 @@ const carts = [
     {
         userId: 1,
         total: 0,
-        isFulfilled: false
+        isFulfilled: true
     },
     {
         userId: 2,
@@ -12,7 +12,7 @@ const carts = [
     {
         userId: 3,
         total: 0,
-        isFulfilled: false
+        isFulfilled: true
     },
     {userId: 4,
         total: 0,
