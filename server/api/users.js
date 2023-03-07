@@ -219,13 +219,31 @@ router.put('/:id/completeOrder', async(req, res, next) => {
     const { id } = req.params
     const order = await Order.findOne({
       where: {
-        userId: id
+        userId: id,
+        isFulfilled: false
       }
     })
     order.isFulfilled = true
     await order.save()
-    console.log(order)
-    res.json(order)
+
+    const newOrder = await Order.create({
+      userId: id,
+      total: 0,
+      isFulfilled: false
+    })
+
+    const orderItems = await OrderItems.findAll({
+      where: {
+        orderId: order.id
+      }
+    })
+
+    const fullOrder = {
+      cartInfo: newOrder,
+      orderItems
+    }
+  
+    res.json(fullOrder)
   } catch(err) {
     console.error(err.message)
     next(err)
