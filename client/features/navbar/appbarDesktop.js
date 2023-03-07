@@ -43,8 +43,6 @@ import {
         <ListItem component="a" href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemText primary="Products" />
         </ListItem>
-          {/* <ListItemText primary="About us" />
-          <ListItemText primary="Contact us" /> */}
           <ListItemButton onClick={() => dispatch(setShowSearchBox(true))}>
             <ListItemIcon>
               <SearchIcon />
