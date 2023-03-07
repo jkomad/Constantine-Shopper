@@ -90,7 +90,7 @@ const Cart = () => {
                 <img src={item.product.imgUrl} className="productImg" />
                 <div className="cartInfo">
                   <a>
-                    {`(${item.quantity})`}{item.product.name}
+                    {`(${item.quantity})`} {item.product.name}
                   </a>
                   <p>{`Price: $${item.product.price}.00`}</p>
                 </div>
