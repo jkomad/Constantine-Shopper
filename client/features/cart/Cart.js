@@ -63,18 +63,18 @@ const Cart = () => {
   return (
     <div>
       <h1 className="cart-header">{user.username}'s Cart</h1>
-      <div className="productsBody">
+      <div className="cartBody">
         {itemsToCheckout.map((item) => {
           return (
             <div key={item.product.id} className="container">
-              <div className="productContainer">
+              <div className="cartContainer">
                 <img src={item.product.imgUrl} className="productImg" />
-                <div className="productInfo">
+                <div className="cartInfo">
                   <a>
-                    {`(${item.quantity})`} {item.product.name}
+                    {`(${item.quantity})`}{item.product.name}
                   </a>
-                  <p>{item.product.price}</p>
-                  <p>{item.product.description}</p>
+                  <p>{`Price: $${item.product.price}.00`}</p>
+                  {/* <p>{item.product.description}</p> */}
                 </div>
               </div>
               <div className="ui">
@@ -96,7 +96,7 @@ const Cart = () => {
         0
       ) : (
         <>
-          <button onClick={() => setIsOpen(true)}>Show Payment Modal</button>
+          <button onClick={() => setIsOpen(true)}>PROCEED TO CHECKOUT</button>
           {isOpen && <Modal setIsOpen={setIsOpen} />}
         </>
       )}
