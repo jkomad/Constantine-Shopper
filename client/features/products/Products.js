@@ -13,6 +13,7 @@ import { fetchCart, addToCart, selectCart } from "../cart/cartSlice";
 const Products = () => {
   const products = useSelector(selectProducts);
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const user = useSelector((state) => state.auth.me)
   const cart = useSelector(selectCart)
   const { cartInfo, orderItems } = cart
@@ -42,6 +43,21 @@ const Products = () => {
     setAddedItem(true)
   }
 
+  const addToLocalStorage = (product) => {
+    const orderItem = localStorage.getItem(`productId: ${product.id}`)
+    if(orderItem === null) {
+      const newOrder = {
+        product, 
+        quantity: 1
+      }
+      localStorage.setItem(`productId: ${product.id}`, JSON.stringify(newOrder))
+    } else {
+      const newOrderItem = JSON.parse(localStorage.getItem(`productId: ${product.id}`))
+      newOrderItem.quantity++
+      localStorage.setItem(`productId: ${product.id}`, JSON.stringify(newOrderItem))
+    }
+  }
+
   return (
     <>
       <h1>Snack Starts Here:</h1>
@@ -54,12 +70,12 @@ const Products = () => {
               <Link to={`/products/${product.id}`}>{product.name}</Link>
               <p className="margin2px">{`$${product.price}`}</p>
               <p className="margin2px italic">{`${product.description.substring(0, 45)}...`}</p>
+              {isLoggedIn ? 
               <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
-              {isAdmin ? (
-              <DeleteProduct className="deleteButton" product={product} />
-            ) : (
-              ""
-            )}
+              :
+              <button onClick={() => addToLocalStorage(product)}>Add to Local</button>
+              }
+              {isAdmin ? (<DeleteProduct className="deleteButton" product={product} />):("")}
             </div>
           </div>
         ))}
