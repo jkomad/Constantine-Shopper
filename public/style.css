@@ -1,5 +1,9 @@
 body {
-  font-family: sans-serif;
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -20,20 +24,14 @@ form div {
   display: inline-block;
 }
 
-/* Navbar and User Forms */
-/* .Navbar{
-  position: absolute;
-  width: 100%;
-  display: flex;
-  left: 0px;
-  top: 0px;
-  background-color: rgb(47, 160, 108);
-  justify-content: space-between;
-  align-items: center;
+.containMe{
+  margin: 0 200px;
+  /* text-align: center; */
 }
-.Navbar h1{
-  color: azure;
-}*/
+.containMe p{
+  text-align: center;
+}
+
 .Login{
   margin-top: 80px;
   display: flex;
