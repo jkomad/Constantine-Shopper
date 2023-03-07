@@ -36,7 +36,7 @@ const Products = () => {
       id: user.id,
       quantity: 1,
       productId,
-      orderId: cartInfo.id, 
+      orderId: cartInfo.id,
     }
     dispatch(addToCart(newOrder))
     setAddedItem(true)
@@ -44,7 +44,7 @@ const Products = () => {
 
   return (
     <>
-      <h1>All Products:</h1>
+      <h1>Snack Starts Here:</h1>
       {isAdmin ? <Link to="/products/add">Add a Product</Link> : ""}
       <div className="productsBody">
         {products.map((product) => (
@@ -53,10 +53,10 @@ const Products = () => {
             <div className="productInfo">
               <Link to={`/products/${product.id}`}>{product.name}</Link>
               <p className="margin2px">{`$${product.price}`}</p>
-              <p className="margin2px italic">{product.description.charAt(0).toUpperCase()+product.description.slice(1)}</p>
-              <button onClick={() => handleAddToCart(product.id)}>add to cart</button>
+              <p className="margin2px italic">{`${product.description.substring(0, 45)}...`}</p>
+              <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
               {isAdmin ? (
-              <DeleteProduct className="deleteButton" product={product}>REMOVE PRODUCT</DeleteProduct>
+              <DeleteProduct className="deleteButton" product={product} />
             ) : (
               ""
             )}
