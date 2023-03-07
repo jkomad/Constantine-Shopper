@@ -71,7 +71,8 @@ router.get('/:id/cart', async (req, res, next) => {
     })
     const order = await Order.findOne({
       where: {
-        userId: user.id
+        userId: user.id,
+        isFulfilled: false
       }
     })
     const orderItems = await OrderItems.findAll({
@@ -210,6 +211,25 @@ router.put('/:id/cart/remove', async(req, res, next) => {
       console.error(err.message)
       next(err)
     }
+})
+
+// PUT /api/users/:id/completeOrder
+router.put('/:id/completeOrder', async(req, res, next) => {
+  try {
+    const { id } = req.params
+    const order = await Order.findOne({
+      where: {
+        userId: id
+      }
+    })
+    order.isFulfilled = true
+    await order.save()
+    console.log(order)
+    res.json(order)
+  } catch(err) {
+    console.error(err.message)
+    next(err)
+  }
 })
 
 module.exports = router
