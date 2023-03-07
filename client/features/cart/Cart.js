@@ -40,14 +40,14 @@ const Cart = () => {
         dispatch(removeFromCart(orderToRemove))
     }
 
-    const handleIncrementItem = (item) => { 
-        const { product } = item
-        const itemToIncrement = {
-            id,
-            product
-        }
-        dispatch(incrementItem(itemToIncrement))
-    }
+    // const handleIncrementItem = (item) => { 
+    //     const { product } = item
+    //     const itemToIncrement = {
+    //         id,
+    //         product
+    //     }
+    //     dispatch(incrementItem(itemToIncrement))
+    // }
     
     const checkout = (order) => {
         const itemsToCheckout = []
@@ -92,6 +92,7 @@ const Cart = () => {
                   value={item.quantity}
                   onChange={(event) => handleQtyChange(event, item.product.id)}
                 />
+                <button onClick={handleRemoveProduct}>Remove Product</button>
               </div>
             </div>
           );
