@@ -5,9 +5,12 @@ import { useParams } from 'react-router-dom'
 import { fetchAllProducts, selectProducts } from '../products/productsSlice'
 import { selectCart, fetchCart, removeFromCart, incrementItem } from './cartSlice'
 import { selectMe } from '../auth/authSlice'
-import { Modal } from '@mui/material'
+import Payment from "./Payment";
+import Modal from "./Modal";
+
 
 const Cart = () => {    
+    const [isOpen, setIsOpen] = useState(false);
     const { id } = useParams()
     const user = useSelector(selectMe)
     const products = useSelector(selectProducts)
