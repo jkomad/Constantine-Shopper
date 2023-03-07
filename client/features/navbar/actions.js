@@ -34,11 +34,11 @@ export default function Actions({ matches }) {
         {isLoggedIn && isAdmin ? (<Component>
       <MyList type="row">
       <Divider orientation="vertical" flexItem />
-      <Link title='All Users' href={`http://localhost:8080/users`}><ListItemButton
+      <ListItemButton
           sx={{
             justifyContent: "center",
           }}
-        >
+        ><Link title='All Users' href={`http://localhost:8080/users`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -47,14 +47,14 @@ export default function Actions({ matches }) {
             }}
           >
             <People />
-          </ListItemIcon>
-        </ListItemButton></Link>
+          </ListItemIcon></Link>
+        </ListItemButton>
         <Divider orientation="vertical" flexItem />
-      <Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}><ListItemButton
+      <ListItemButton
           sx={{
             justifyContent: "center",
           }}
-        >
+        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -63,8 +63,8 @@ export default function Actions({ matches }) {
             }}
           >
             <ShoppingCartIcon />
-          </ListItemIcon>
-        </ListItemButton></Link>
+          </ListItemIcon></Link>
+        </ListItemButton>
         <Divider orientation="vertical" flexItem />
         <ListItemButton
           sx={{
@@ -82,11 +82,11 @@ export default function Actions({ matches }) {
           </ListItemIcon></Link>
         </ListItemButton>
         <Divider orientation="vertical" flexItem />
-        <Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'><ListItemButton
+        <ListItemButton
           sx={{
             justifyContent: "center",
           }}
-        >
+        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -95,18 +95,18 @@ export default function Actions({ matches }) {
             }}
           >
             <Logout />
-          </ListItemIcon>
-        </ListItemButton></Link>
+          </ListItemIcon></Link>
+        </ListItemButton>
         <Divider orientation="vertical" flexItem />
       </MyList>
     </Component>) : isLoggedIn ? (<Component>
       <MyList type="row">
       <Divider orientation="vertical" flexItem />
-      <Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}><ListItemButton
+      <ListItemButton
           sx={{
             justifyContent: "center",
           }}
-        >
+        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -115,8 +115,8 @@ export default function Actions({ matches }) {
             }}
           >
             <ShoppingCartIcon />
-          </ListItemIcon>
-        </ListItemButton></Link>
+          </ListItemIcon></Link>
+        </ListItemButton>
         <Divider orientation="vertical" flexItem />
         <ListItemButton
           sx={{
@@ -134,11 +134,11 @@ export default function Actions({ matches }) {
           </ListItemIcon></Link>
         </ListItemButton>
         <Divider orientation="vertical" flexItem />
-        <Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'><ListItemButton
+        <ListItemButton
           sx={{
             justifyContent: "center",
           }}
-        >
+        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -147,18 +147,18 @@ export default function Actions({ matches }) {
             }}
           >
             <Logout />
-          </ListItemIcon>
-        </ListItemButton></Link>
+          </ListItemIcon></Link>
+        </ListItemButton>
         <Divider orientation="vertical" flexItem />
       </MyList>
     </Component>) : (<Component>
       <MyList type="row">
       <Divider orientation="vertical" flexItem />
-      <Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}><ListItemButton
+      <ListItemButton
           sx={{
             justifyContent: "center",
           }}
-        >
+        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -167,14 +167,30 @@ export default function Actions({ matches }) {
             }}
           >
             <ShoppingCartIcon />
-          </ListItemIcon>
-        </ListItemButton></Link>
+          </ListItemIcon></Link>
+        </ListItemButton>
         <Divider orientation="vertical" flexItem />
-        <Link title='Sign In'  href="http://localhost:8080/login"><ListItemButton
+        <ListItemButton
           sx={{
             justifyContent: "center",
           }}
-        >
+        ><Link title='Sign Up'  href="http://localhost:8080/signup">
+          <ListItemIcon
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              color: matches && Colors.secondary,
+            }}
+          >
+            <PersonAddAlt1Icon />
+          </ListItemIcon></Link>
+        </ListItemButton>
+        <Divider orientation="vertical" flexItem />
+        <ListItemButton
+          sx={{
+            justifyContent: "center",
+          }}
+        ><Link title='Sign In'  href="http://localhost:8080/login">
           <ListItemIcon
             sx={{
               display: "flex",
@@ -184,24 +200,8 @@ export default function Actions({ matches }) {
           >
             <Login />
           </ListItemIcon>
+          </Link>
         </ListItemButton>
-        </Link>
-        <Divider orientation="vertical" flexItem />
-        <Link title='Sign Up'  href="http://localhost:8080/signup"><ListItemButton
-          sx={{
-            justifyContent: "center",
-          }}
-        >
-          <ListItemIcon
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              color: matches && Colors.secondary,
-            }}
-          >
-            <PersonAddAlt1Icon />
-          </ListItemIcon>
-        </ListItemButton></Link>
         <Divider orientation="vertical" flexItem />
       </MyList>
       </Component>
@@ -210,52 +210,3 @@ export default function Actions({ matches }) {
   );
 }
 
-
-//     <div>
-//       <nav>
-//         {isLoggedIn && isAdmin ? (
-//           <div className='Navbar'>
-//             <div>
-//               <Link to="/products"><h1>SnackBar</h1></Link>
-//               <Link title='Products' className="fa fa-fw fa-th-large" to="/products"></Link>
-//               <Link title='Users' className="fa fa-fw fa-users" to="/users"></Link>
-//             </div>
-//             {/* The navbar will show these links after you log in */}
-//             <div>
-//               <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`users/${userId}/cart`}></Link>
-//               <Link title='Home' className="fa fa-fw fa-home" to="/home"></Link>
-//               <Link title='My Account' className="fa fa-fw fa-user" to={`users/${userId}`}></Link>
-//             <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome} to="/login"></Link>
-//             </div>
-//           </div>
-//         ) :isLoggedIn ? (
-//           <div className='Navbar'>
-//             <div>
-//               <Link to="/products"><h1>SnackBar</h1></Link>
-//               <Link title='Products' className="fa fa-fw fa-th-large" to="/products"></Link>
-//             </div>
-//             {/* The navbar will show these links after you log in */}
-//             <div>
-//               <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/${userId}/cart`}></Link>
-//               <Link title='Home' className="fa fa-fw fa-home" to="/home"></Link>
-//               <Link title='My Account' className="fa fa-fw fa-user" to={`users/${userId}`}></Link>
-//              <Link title='Sign Out' className="fa fa-fw fa-sign-out" onClick={logoutAndRedirectHome} to="/login"></Link>
-//             </div>
-//           </div>
-//         ) : (
-//           <div className='Navbar'>
-//             <div>
-//               <Link to="/products"><h1>SnackBar</h1></Link>
-//               <Link title='Products' className="fa fa-fw fa-th-large" to="/products"></Link>
-//             </div>
-//             {/* The navbar will show these links before you log in */}
-//             <div>
-//             <Link title='My Cart' className="fa fa-fw fa-shopping-cart" to={`/users/guest/cart`}></Link>
-//             <Link title='Sign In' className="fa fa-fw fa-sign-in" to="/login"></Link>
-//             <Link title='Sign Up' className="fa fa-fw fa-user-plus" to="/signup"></Link>
-//             </div>
-//           </div>
-//         )}
-//       </nav>
-//       <hr />
-//     </div>
