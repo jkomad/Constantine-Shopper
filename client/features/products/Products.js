@@ -44,17 +44,17 @@ const Products = () => {
   }
 
   const addToLocalStorage = (product) => {
-    const orderItem = localStorage.getItem(`productId: ${product.id}`)
+    const orderItem = localStorage.getItem(`productId${product.id}`)
     if(orderItem === null) {
       const newOrder = {
         product, 
         quantity: 1
       }
-      localStorage.setItem(`productId: ${product.id}`, JSON.stringify(newOrder))
+      localStorage.setItem(`productId${product.id}`, JSON.stringify(newOrder))
     } else {
-      const newOrderItem = JSON.parse(localStorage.getItem(`productId: ${product.id}`))
+      const newOrderItem = JSON.parse(localStorage.getItem(`productId${product.id}`))
       newOrderItem.quantity++
-      localStorage.setItem(`productId: ${product.id}`, JSON.stringify(newOrderItem))
+      localStorage.setItem(`productId${product.id}`, JSON.stringify(newOrderItem))
     }
   }
 
