@@ -78,6 +78,7 @@ const SingleProduct = () => {
             <h2>{product.name}</h2>
             <h4>{`Price: $${product.price}.00`}</h4>
             <p>{product.description}</p>
+            <div className="ui">
             {!showEditForm && (
               <button onClick={handleEditClick}>Edit Product</button>
             )}
@@ -95,6 +96,7 @@ const SingleProduct = () => {
               <button type="submit">Add to cart</button>
             </form>
             <button onClick={() => handleDelete()}>Delete</button>
+            </div>
           </div>
         </div>
       ) : (
