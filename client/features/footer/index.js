@@ -31,7 +31,7 @@ export default function Footer() {
         fontSize: { xs: '12px', md: '14px' },
         position: "relative",
         bottom: 0,
-        marginTop: "100px"
+        marginTop: "450px"
       }}
     >
       <Grid container spacing={2} justifyContent="center">

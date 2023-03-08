@@ -30,7 +30,7 @@ export const Colors = {
   black: "#000",
 };
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: Colors.primary,
@@ -100,4 +100,3 @@ const theme = createTheme({
   },
 });
 
-export default theme;
