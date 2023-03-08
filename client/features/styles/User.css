@@ -67,20 +67,22 @@ button {
 }
 
 .form-header {
-    width: 600px;
-    background-color: lightgray;
-    text-align: center;
-    border-radius: 30px 30px 0 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  width: 600px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 }
 
 #edit-user {
-    background-color: grey;
+    background-color: white;
     width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 0 0 30px 30px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 }
 
 #edit-user > label {
