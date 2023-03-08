@@ -1,4 +1,4 @@
-import { Divider, ListItemButton, ListItemIcon, Link } from "@mui/material";
+import { Divider, ListItemButton, ListItemIcon} from "@mui/material";
 import { ActionIconsContainerDesktop, ActionIconsContainerMobile, MyList } from "../../styles/appbar";
 import PersonIcon from "@mui/icons-material/Person";
 import Login from "@mui/icons-material/Login";
@@ -11,7 +11,7 @@ import React from 'react';
 import { logout } from '../../app/store';
 import { deleteCartState, fetchCart, selectCart } from '../cart/cartSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Actions({ matches }) {
 
@@ -38,7 +38,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='All Users' href={`http://localhost:8080/users`}>
+        ><Link title='All Users' to="/users">
           <ListItemIcon
             sx={{
               display: "flex",
@@ -54,7 +54,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
+        ><Link title='My Cart' to={`/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -71,7 +71,7 @@ export default function Actions({ matches }) {
             justifyContent: "center",
           }}
         >
-          <Link title='My Account' href={`http://localhost:8080/users/${userId}`}><ListItemIcon
+          <Link title='My Account' to={`/users/${userId}`}><ListItemIcon
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -86,7 +86,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'>
+        ><Link title='Sign Out' onClick={logoutAndRedirectHome} to='/login'>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -106,7 +106,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
+        ><Link title='My Cart' to={`/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -123,7 +123,7 @@ export default function Actions({ matches }) {
             justifyContent: "center",
           }}
         >
-          <Link title='My Account' href={`http://localhost:8080/users/${userId}`}><ListItemIcon
+          <Link title='My Account' to={`/users/${userId}`}><ListItemIcon
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -138,7 +138,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'>
+        ><Link title='Sign Out' onClick={logoutAndRedirectHome} to='/login'>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -174,7 +174,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign Up'  href="http://localhost:8080/signup">
+        ><Link title='Sign Up'  to="/signup">
           <ListItemIcon
             sx={{
               display: "flex",
@@ -190,7 +190,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign In'  href="http://localhost:8080/login">
+        ><Link title='Sign In'  to="/login">
           <ListItemIcon
             sx={{
               display: "flex",

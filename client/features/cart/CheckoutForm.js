@@ -30,7 +30,7 @@ const CheckoutForm = ({ order, id }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}`,
+        return_url: `${window.location.origin}/products`,
       },
     });
 
@@ -39,8 +39,9 @@ const CheckoutForm = ({ order, id }) => {
     }
 
     setIsProcessing(false);
-    dispatch(completeOrder(id))
+    dispatch(completeOrder(id));
   };
+
 
   return (
     <form onSubmit={handleSubmit} id="payment-form">

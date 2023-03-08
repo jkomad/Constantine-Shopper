@@ -37,8 +37,8 @@ const User = () => {
         <div className="user-container">
           <div className="single-user">
             <img className="user-pic" src={user.imgUrl} />
-            <h1>{user.username}</h1>
-            <h2>{user.email}</h2>
+            <h3>{user.username}</h3>
+            <h3>{user.email}</h3>
             <h3>{user.address}</h3>
             <div className="buttons">
               {!isAdmin ? (
@@ -55,17 +55,18 @@ const User = () => {
                 Edit
               </button>
             </div>
-            <h3>ORDER HISTORY:</h3>
-            <div>
+          </div>
+          <div>
+          <h4>ORDER HISTORY:</h4>
               {orderHistory.map((order) => (
                 <div className="orderContainer" key={order.id}>
-                  <p>{`Order#: ${order.id}`}</p>
+                  <p>{`Order: #00000${order.id}`}</p>
                   <p>{`Total: $${order.total}.00`}</p>
                   <p>{`Created: ${order.createdAt}.00`}</p>
+                  {order.isFulfilled ? <p className="bold green">Completed!</p> : <p className="italic red bold">In Progress</p>}
                 </div>
               ))}
             </div>
-          </div>
         </div>
       ) : (
         <div className="container">

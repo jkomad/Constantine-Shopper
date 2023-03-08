@@ -14,7 +14,7 @@ const Home = (props) => {
       <Banner />
       <Promotions />
       <div className="containMe">
-      <h3> Oh Aiiit, {username} have you heard of much Irish folklore? When you were
+      <h3> Oh Aiiit, {username ? username : "stranger"} have you heard of much Irish folklore? When you were
       wee lad growing up in Ireland, and you looked out and saw the green grass and
       blue sky; did they ever teach you any old songs from the old days? Well I am
       going to teach you one anyway. It's called <i>the Death of Dorae</i>, Here it goes:</h3>

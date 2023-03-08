@@ -8,7 +8,6 @@ import {
     Stack,
     Typography,
     ListItem,
-    Link,
   } from "@mui/material";
   import {
     AppbarActionIcons,
@@ -23,6 +22,7 @@ import {
   import Actions from "./actions";
   import React from 'react';
   import { useDispatch } from "react-redux";
+  import { Link } from "react-router-dom";
 
   export default function AppbarDesktop({ matches }) {
     const dispatch = useDispatch();
@@ -30,18 +30,18 @@ import {
       <AppbarContainer>
         
             <AppbarHeader variant="h4">
-                <a href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>SnackBar</a>
+                <Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>SnackBar</Link>
             </AppbarHeader>
         
         <MyList type="row">
-        <ListItem component="a" href="http://localhost:8080/home" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemText primary="Home" />
+        <ListItem style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link  to="/home" style={{ textDecoration: 'none', color: 'inherit', fontFamily: 'sans-serif' }}>Home</Link>
         </ListItem>
-        <ListItem component="a" href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemText primary="Categories" />
+        <ListItem style={{ textDecoration: 'none', color: 'inherit' }}>
+           <Link  to="/products" style={{ textDecoration: 'none', color: 'inherit', fontFamily: 'sans-serif' }}>Categories</Link>
         </ListItem>
-        <ListItem component="a" href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemText primary="Products" />
+        <ListItem style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link  to="/products" style={{ textDecoration: 'none', color: 'inherit', fontFamily: 'sans-serif' }}>Products</Link>
         </ListItem>
           <ListItemButton onClick={() => dispatch(setShowSearchBox(true))}>
             <ListItemIcon>
