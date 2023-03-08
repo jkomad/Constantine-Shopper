@@ -158,7 +158,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='My Cart' to={`/users/${userId}/cart`}>
+        ><Link title='My Cart' href={`http://localhost:8080/users/guest/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
