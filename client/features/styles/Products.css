@@ -37,3 +37,17 @@
 .italic {
   font-style: italic;
 }
+
+/* SINGLE PRODUCT VIEW */
+
+.productBody {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.productContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
