@@ -17,6 +17,7 @@ import ProductMeta from "./ProductMeta";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, addToCart, selectCart } from "../cart/cartSlice";
 import DeleteProduct from "../products/DeleteProduct";
+import { selectMe } from '../auth/authSlice'
 
 export default function SingleProductDesktop({ product, matches }) {
   const [ProductDetailDialog, showProductDetailDialog, closeProductDialog] =
@@ -25,6 +26,8 @@ export default function SingleProductDesktop({ product, matches }) {
   const cart = useSelector(selectCart)
   const { cartInfo, orderItems } = cart
   const [addedItem, setAddedItem] = useState(false)
+  const user = useSelector(selectMe)
+  const dispatch = useDispatch()
   const handleAddToCart = (productId) => {
     const newOrder = {
       id: user.id,
