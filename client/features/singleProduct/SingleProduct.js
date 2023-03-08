@@ -10,7 +10,7 @@ import {
 import EditProductForm from "./EditProductForm";
 import { fetchAllProducts } from "../products/productsSlice";
 import { addToCart, fetchCart, selectCart } from "../cart/cartSlice";
-
+import { Button } from "@mui/material";
 const SingleProduct = () => {
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
   const user = useSelector((state) => state.auth.me);
@@ -117,7 +117,7 @@ const SingleProduct = () => {
                 defaultValue="1"
                 min="1"
               ></input>
-              <button type="submit">Add to cart</button>
+              <Button variant="contained" type="submit">Add to cart</Button>
             </form>
           </div>
         </div>

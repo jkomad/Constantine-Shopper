@@ -17,6 +17,7 @@ import { SubscribeTf, FooterTitle } from "../../styles/footer";
 import SendIcon from "@mui/icons-material/Send";
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     const userId = useSelector((state) => state.auth.me.id);
@@ -59,22 +60,22 @@ export default function Footer() {
           <List>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href="http://localhost:8080/about-us" style={{ textDecoration: 'none', color: 'inherit' }}>About Us</a>
+              <Link to="/about-us" style={{ textDecoration: 'none', color: 'inherit' }}>About Us</Link>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href="http://localhost:8080/" style={{ textDecoration: 'none', color: 'inherit' }}>Order Tracking</a>
+              <Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>Order Tracking</Link>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>Privacy &amp; Policy</a>
+              <Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>Privacy &amp; Policy</Link>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>Terms &amp; Conditions</a>
+              <Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>Terms &amp; Conditions</Link>
               </Typography>
             </ListItemText>
           </List>
@@ -84,22 +85,22 @@ export default function Footer() {
           <List>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href="http://localhost:8080/login" style={{ textDecoration: 'none', color: 'inherit' }}>Login</a>
+              <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>Login</Link>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href={`http://localhost:8080/users/${userId}/cart`} style={{ textDecoration: 'none', color: 'inherit' }}>My Cart</a>
+              <Link to={`/users/${userId}/cart`} style={{ textDecoration: 'none', color: 'inherit' }}>My Cart</Link>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href={`http://localhost:8080/users/${userId}`} style={{ textDecoration: 'none', color: 'inherit' }}>My Account</a>
+              <Link to={`/users/${userId}`} style={{ textDecoration: 'none', color: 'inherit' }}>My Account</Link>
               </Typography>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
-              <a href={`http://localhost:8080/users/${userId}/cart`} style={{ textDecoration: 'none', color: 'inherit' }}>Wishlist</a>
+              <Link to={`/users/${userId}/cart`} style={{ textDecoration: 'none', color: 'inherit' }}>Wishlist</Link>
               </Typography>
             </ListItemText>
           </List>

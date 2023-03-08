@@ -9,7 +9,7 @@ import {
   BannerShopButton,
   BannerTitle,
 } from "../../styles/banner";
-
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   const theme = useTheme();
@@ -30,9 +30,9 @@ export default function Banner() {
         </BannerDescription>
 
         <BannerShopButton color="primary">
-        <a href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>
             Shop Now
-        </a>
+        </Link>
         </BannerShopButton>
       </BannerContent>
     </BannerContainer>
