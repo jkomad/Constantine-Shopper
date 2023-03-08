@@ -30,17 +30,17 @@ import {
       <AppbarContainer>
         
             <AppbarHeader variant="h4">
-                <a href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>SnackBar</a>
+                <a href="https://constantine-shopper.onrender.com/products" style={{ textDecoration: 'none', color: 'inherit' }}>SnackBar</a>
             </AppbarHeader>
         
         <MyList type="row">
-        <ListItem component="a" href="http://localhost:8080/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItem component="a" href="https://constantine-shopper.onrender.com/home" style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemText primary="Home" />
         </ListItem>
-        <ListItem component="a" href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItem component="a" href="https://constantine-shopper.onrender.com/products" style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemText primary="Categories" />
         </ListItem>
-        <ListItem component="a" href="http://localhost:8080/products" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItem component="a" href="https://constantine-shopper.onrender.com/products" style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemText primary="Products" />
         </ListItem>
           <ListItemButton onClick={() => dispatch(setShowSearchBox(true))}>

@@ -38,7 +38,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='All Users' href={`http://localhost:8080/users`}>
+        ><Link title='All Users' href={`https://constantine-shopper.onrender.com/users`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -54,7 +54,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
+        ><Link title='My Cart' href={`https://constantine-shopper.onrender.com/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -71,7 +71,7 @@ export default function Actions({ matches }) {
             justifyContent: "center",
           }}
         >
-          <Link title='My Account' href={`http://localhost:8080/users/${userId}`}><ListItemIcon
+          <Link title='My Account' href={`https://constantine-shopper.onrender.com/users/${userId}`}><ListItemIcon
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -86,7 +86,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'>
+        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='https://constantine-shopper.onrender.com/login'>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -106,7 +106,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
+        ><Link title='My Cart' href={`https://constantine-shopper.onrender.com/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -123,7 +123,7 @@ export default function Actions({ matches }) {
             justifyContent: "center",
           }}
         >
-          <Link title='My Account' href={`http://localhost:8080/users/${userId}`}><ListItemIcon
+          <Link title='My Account' href={`https://constantine-shopper.onrender.com/users/${userId}`}><ListItemIcon
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -138,7 +138,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='http://localhost:8080/login'>
+        ><Link title='Sign Out' onClick={logoutAndRedirectHome} href='https://constantine-shopper.onrender.com/login'>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -158,7 +158,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='My Cart' href={`http://localhost:8080/users/${userId}/cart`}>
+        ><Link title='My Cart' href={`https://constantine-shopper.onrender.com/users/${userId}/cart`}>
           <ListItemIcon
             sx={{
               display: "flex",
@@ -174,7 +174,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign Up'  href="http://localhost:8080/signup">
+        ><Link title='Sign Up'  href="https://constantine-shopper.onrender.com/signup">
           <ListItemIcon
             sx={{
               display: "flex",
@@ -190,7 +190,7 @@ export default function Actions({ matches }) {
           sx={{
             justifyContent: "center",
           }}
-        ><Link title='Sign In'  href="http://localhost:8080/login">
+        ><Link title='Sign In'  href="https://constantine-shopper.onrender.com/login">
           <ListItemIcon
             sx={{
               display: "flex",
