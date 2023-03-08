@@ -5,7 +5,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-top: 92px; 
-  background-image: url('https://media2.giphy.com/media/32aOhKvgdJ1mH6zdv8/giphy.gif?cid=ecf05e47j6gc8taay8guu4366ai0p7p2oupicyfq81bgxlcx&rid=giphy.gif&ct=g');
   background-size: cover;
   height: 100vh;
   /* background-repeat: no-repeat; */
