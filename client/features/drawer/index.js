@@ -17,6 +17,7 @@ import { lighten } from "polished";
 import { Colors } from "../../styles/theme";
 import { setDrawerOpen } from "./drawerSlice";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MiddleDivider = styled((props) => <Divider key={props.key} variant="middle" {...props} />)``;
 
@@ -38,20 +39,20 @@ export function AppDrawer() {
       <Drawer open={drawerOpen}>
         <List>
           <ListItemButton>
-            <ListItem component="a" href="http://localhost:8080/home" style={{ textDecoration: "none", color: "inherit" }}>
-              <ListItemText primary="Home" />
+            <ListItem style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link  to="/home" style={{ textDecoration: 'none', color: 'inherit', fontFamily: 'sans-serif' }}>Home</Link>
             </ListItem>
           </ListItemButton>
           <MiddleDivider />
           <ListItemButton>
-            <ListItem component="a" href="http://localhost:8080/products" style={{ textDecoration: "none", color: "inherit" }}>
-              <ListItemText primary="Categories" />
-            </ListItem>
+          <ListItem style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link  to="/products" style={{ textDecoration: 'none', color: 'inherit', fontFamily: 'sans-serif' }}>Categories</Link>
+        </ListItem>
           </ListItemButton>
           <MiddleDivider />
           <ListItemButton>
-            <ListItem component="a" href="http://localhost:8080/products" style={{ textDecoration: "none", color: "inherit" }}>
-              <ListItemText primary="Products" />
+            <ListItem style={{ textDecoration: 'none', color: 'inherit' }}>
+               <Link  to="/products" style={{ textDecoration: 'none', color: 'inherit', fontFamily: 'sans-serif' }}>Products</Link>
             </ListItem>
           </ListItemButton>
           <MiddleDivider />
