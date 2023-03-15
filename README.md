@@ -18,7 +18,7 @@
 #### Worked on a small team of four developers to establish base functionality for a fictional e-commerce website called SnackBar
 #### Familiarized myself with the basic process of working on Github with a team to develop a fully functional full stack application
 
-## Start
+### Start
 
 #### Sync and seed your database by running `npm run seed`. Running `npm run start:dev` will make great things happen!
 
